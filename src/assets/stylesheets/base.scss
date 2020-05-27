@@ -1,0 +1,130 @@
+// DEFAULT
+// @import "https://assets.manywho.com/css/flow-ui-bootstrap-3.18.0.css";
+// @import "https://assets.manywho.com/css/themes/mw-paper.css";
+// @import "https://assets.manywho.com/css/flow-ui-bootstrap-components-3.18.0.css";
+// @import "https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css";
+// @import "https://bootswatch.com/3/flatly/bootstrap.min.css";
+@import "https://use.typekit.net/znv5jfh.css?ver=5.4.1";
+
+$wide: 1920px;
+$hd: 1360px;
+$desktop: 1028px;
+$tablet: 768px;
+
+
+$brand1: #033d58;
+$brand2: #009688;
+$brand3: #ff7c66;
+$brand4: #0087cc;
+$brand5: #fedb00;
+$grey1: #eeeeee;
+$grey2: #ababab;
+$grey3: #808080;
+$grey4: #454545;
+
+
+
+body {
+    color: #454545;
+  
+    font-size: 16px;
+    -webkit-overflow-scrolling: touch;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-family: fieldwork, sans-serif;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+  
+    /* Brand Colors */
+    --b1: #033d58;
+    --b2: #009688;
+    --b3: #ff7c66;
+    --b4: #0087cc;
+    --b5: #fedb00;
+    /* Brand Gray / Grey Colors */
+    --g1: #eeeeee;
+    --g2: #ababab;
+    --g3: #808080;
+    --g4: #454545;
+    /* Sizes */
+    --s0: 0px;
+    --s5: 5px;
+    --s10: 10px;
+    --s20: 20px;
+    --s25: 25px;
+    --s30: 30px;
+    --s40: 40px;
+    --s50: 50px;
+    --s60: 60px;
+    --s70: 70px;
+    --s80: 80px;
+    --s90: 90px;
+    /* Resolutions */
+  }
+
+
+@import './flow-reset.scss';
+@import './global.scss';
+.mw-bs {
+  
+    @import './components/nav.scss';
+    @import './components/hero.scss';
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.tile-wrapper {
+  
+  padding:0 40px;
+  margin-top:120px;
+  ul {margin:0; padding:0;}
+  li {display:block; }
+
+
+  ul{
+    margin-top:120px;
+    display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: ". . . ." ". . . ." ". . . .";
+  grid-gap:40px;
+  }
+  li {
+    padding:10px;
+    padding: 20px;
+    box-sizing:content-box;
+    // box-shadow: 0 4px 20px 0 rgba(0,0,0,0.14), 0 7px 12px -5px #033d58;
+    background: #fff;
+    -webkit-box-shadow: 0 1px 5px rgba(0,0,0,.2);
+    box-shadow: 0 1px 5px rgba(0,0,0,.2);
+  }
+}
+
+img.tile-icon {
+  max-width:30px;
+}
+
+.tile-wrapper > .container:before {
+  content:initial;
+}

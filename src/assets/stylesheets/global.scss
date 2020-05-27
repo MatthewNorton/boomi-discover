@@ -1,0 +1,53 @@
+// ==============================
+// APPLIES TO ALL COMPONENTS
+// =================================
+
+$wide: 1920px;
+$hd: 1360px;
+$desktop: 1028px;
+$tablet: 768px;
+
+html,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+.mw-bs {
+  font-family: fieldwork, sans-serif;
+  font-style: normal;
+}
+
+.mw-bs {
+  color: var(--g4);
+  font-size: 16px;
+  .container {
+  max-width:100%;
+  @media (min-width: $tablet) {
+    width: $desktop;
+  }
+  @media (min-width: $desktop) {
+    width: $hd;
+    
+  }
+  @media (min-width: $hd) {
+    width: 100%;
+    margin:0; padding:0;
+  }
+
+}
+
+}
+
+
+
+$brand1: #033d58;
+$brand2: #009688;
+$brand3: #ff7c66;
+$brand4: #0087cc;
+$brand5: #fedb00;
+$grey1: #eeeeee;
+$grey2: #ababab;
+$grey3: #808080;
+$grey4: #454545;

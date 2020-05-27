@@ -1,0 +1,121 @@
+// ===============================================
+// COMPONENT SPECIFIC
+// [Jumbotron]
+// ==============================================
+
+.placeholder {
+    // background: url('https://files-manywho-com.s3.amazonaws.com/833169c7-3807-43da-b087-0995e4eb67c4/placeholder-hero.JPG') no-repeat left top;
+    background: url("https://files-manywho-com.s3.amazonaws.com/833169c7-3807-43da-b087-0995e4eb67c4/placeholder-hero2.JPG")
+      no-repeat center top;
+    width: 100%;
+    height: 513px;
+    display: block;
+    // position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    opacity: 0.5;
+    // mix-blend-mode:saturation;
+  }
+  
+  $hero-bg-color: linear-gradient(90deg, #033d58, #22C5BE);
+  $hero-bg: url('https://files-manywho-com.s3.amazonaws.com/833169c7-3807-43da-b087-0995e4eb67c4/homepage-particles-a.png');
+  $hero-dot-color:#1faba8;
+
+  
+  .hero-container {
+    height: 465px;
+    background:$hero-bg-color;
+    position: relative;
+    color:#fff;
+    padding:40px;
+    &:before {
+      content: '';
+      position: absolute;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      right: 0;
+      background-image: $hero-bg;
+      // background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: left center;
+      z-index: 0;
+    }
+    @media(max-width:$tablet){
+      height:auto;
+    }
+  }
+  .hero-wrapper {
+    position:relative; 
+    max-width: $hd;
+    margin:0 auto;
+    .btn {
+      background: #fff;
+      border-color: #fff;
+      color: #033d58;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 3px;
+      border-radius: 0;
+      &:hover, &:focus {
+        color: #426e82;
+      }
+    }
+  }  
+  
+  .hero-content {
+    position: relative;
+    z-index:100;
+    @media(min-width:$tablet) {
+      padding-right:40%;
+    }
+  
+    .hero-title {
+      font-size: 70px;
+      font-weight: 800;
+      line-height: 1em;
+    }
+    .hero-description {
+     font-size:36px;
+     margin-bottom: 40px;
+    }
+    
+  }
+  
+  .hero-dot {
+    display: block;
+    position: absolute;
+    right:-20px;
+    top:-10px;
+    width: 440px;
+    height: 430px;
+    border-radius: 100%;
+    video {
+      position: absolute;
+      top: 0; 
+      left: 0;
+      border-radius: 100%;
+      height: 100%;
+      object-fit: cover;
+      // overflow:hidden;
+      box-shadow: 
+      0 0 0 20px darken(rgba($hero-dot-color, 0.8), 10%), 
+      0 0 0 40px rgba($hero-dot-color, 0.6), 
+      0 0 0 60px rgba($hero-dot-color, 0.4), 
+      0 0 0 80px rgba($hero-dot-color, 0.2)
+    }
+    &:after{
+      content:'';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background:$hero-bg-color;
+      opacity:0.7;
+      border-radius:100%;
+    }
+  }
+  

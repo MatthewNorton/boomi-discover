@@ -1,0 +1,14 @@
+node_modules
+build
+coverage
+resources
+
+
+
+#webstorm
+.idea
+package-lock.json
+
+#IDE
+.vscode
+ngrok.exe

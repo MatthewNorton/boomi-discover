@@ -1,0 +1,87 @@
+
+// ===============================================
+// COMPONENT SPECIFIC
+// ==============================================
+
+.topnav {
+    background: var(--b1);
+    
+    ul {
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 1fr;
+        justify-content: end;
+        grid-gap: 20px;
+    }
+    li {
+        grid-row: 1;
+        display: block;
+        justify-content: center;
+        align-self: center;
+    }
+    a {
+        padding: 0 10px;
+        height: 40px;
+        line-height: 40px;
+        display: block;
+        font-size: 18px;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 400;
+        &:hover,
+        &:focus {
+            background: var(--g4);
+        }
+        &.alt {
+            background: var(--b3);
+            padding: 0 2.6rem;
+            color: var(--b1);
+        }
+    }
+}
+.bottomnav {
+    
+    max-width:$hd;
+    margin:0 auto;
+    position: relative;
+    background:#fff;
+    z-index:200;
+    &-wrapper {
+        
+        display: grid;
+        grid-template-columns: repeat(12, minmax(1fr, auto));
+        align-items: center;
+    }
+
+    &-logo {
+        max-width: 160px;
+        height: auto;
+        grid-column: 1/4;
+        img {
+            max-width: 100%;
+        }
+    }
+    &-links {
+        a {
+            color: var(--b1);
+            display: block;
+        }
+        @media (min-width: $tablet) {
+            grid-column: 8/12;
+            justify-content: end;
+            ul {
+                display: grid;
+                margin: 0;
+                padding: 0;
+            }
+            li {
+                grid-row: 1;
+                display: block;
+            }
+        }
+    }
+}
+
+// Defaults

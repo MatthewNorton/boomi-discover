@@ -1,0 +1,63 @@
+
+
+
+
+.tile-wrapper {
+  
+    // padding:0 40px;
+    margin-top:120px;
+    max-width: $hd; margin:0 auto;
+    ul {
+        margin-top:120px;
+        display: grid;
+        grid-template-areas: ". . . ." ". . . ." ". . . .";
+        grid-gap:40px;
+    }
+
+    .tile-item {
+        padding:10px;
+        padding: 20px;
+        box-sizing:content-box;
+        // box-shadow: 0 4px 20px 0 rgba(0,0,0,0.14), 0 7px 12px -5px #033d58;
+        background: #fff;
+        -webkit-box-shadow: 0 1px 5px rgba(0,0,0,.2);
+        box-shadow: 0 1px 5px rgba(0,0,0,.2);
+        display:grid;
+        grid-template-areas: "tileicon title title" "description description description" "learn learn example" "label label label";
+        grid-template-columns: 40px repeat(2, 1fr) auto;
+        grid-template-rows: auto auto 1fr auto auto;
+        grid-gap:10px;
+        .tile-icon { grid-area: tileicon;    
+            img {
+            max-width:40px;
+          }
+        }
+    
+        .tile-title { grid-area: title; align-self:top; }
+        
+        .tile-description { grid-area: description; }
+        
+        .tile-learnmore { grid-area: learn;  align-self:center;}
+        
+        .tile-example { grid-area: example; align-self:center; }
+        
+        .tile-label { grid-area: label;
+          
+
+            .label {border-radius:40px;display:inline-block; margin-right:10px; color:$brand1;}
+        }
+    }
+  }
+  
+
+
+
+  
+  .tile-wrapper > .container:before {
+    content:initial;
+  }
+
+
+  .label {
+      font-weight: 100;
+  }

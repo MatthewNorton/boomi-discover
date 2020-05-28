@@ -17,10 +17,10 @@ $brand2: #009688;
 $brand3: #ff7c66;
 $brand4: #0087cc;
 $brand5: #fedb00;
-$grey1: #eeeeee;
-$grey2: #ababab;
-$grey3: #808080;
-$grey4: #454545;
+$gray1: #eeeeee;
+$gray2: #ababab;
+$gray3: #808080;
+$gray4: #454545;
 
 
 
@@ -38,7 +38,10 @@ body {
     font-style: normal;
     margin: 0;
     padding: 0;
-  
+    .fa {
+
+      font-family:"Font Awesome 5 Brands";
+    }
     /* Brand Colors */
     --b1: #033d58;
     --b2: #009688;
@@ -73,58 +76,6 @@ body {
   
     @import './components/nav.scss';
     @import './components/hero.scss';
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.tile-wrapper {
-  
-  padding:0 40px;
-  margin-top:120px;
-  ul {margin:0; padding:0;}
-  li {display:block; }
-
-
-  ul{
-    margin-top:120px;
-    display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: ". . . ." ". . . ." ". . . .";
-  grid-gap:40px;
-  }
-  li {
-    padding:10px;
-    padding: 20px;
-    box-sizing:content-box;
-    // box-shadow: 0 4px 20px 0 rgba(0,0,0,0.14), 0 7px 12px -5px #033d58;
-    background: #fff;
-    -webkit-box-shadow: 0 1px 5px rgba(0,0,0,.2);
-    box-shadow: 0 1px 5px rgba(0,0,0,.2);
-  }
-}
-
-img.tile-icon {
-  max-width:30px;
-}
-
-.tile-wrapper > .container:before {
-  content:initial;
+    @import './components/tiles.scss';
+    @import './components/footer.scss';
 }

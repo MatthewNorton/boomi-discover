@@ -56,13 +56,13 @@ class Navigation extends React.Component<any, any> {
             <div className="topnav">
               <ul>
                 <li>
-                  <a href="#">Contact</a>
+                  <a href="https://boomi.com/company/contact/" target="_blank">Contact</a>
                 </li>
                 <li>
-                  <a href="#">Login</a>
+                  <a href="https://platform.boomi.com/?_ga=2.140176439.544537635.1525375425-968405543.1525375425" target="_blank">Login</a>
                 </li>
                 <li>
-                  <a href="#" className="alt">Free Trial</a>
+                  <a href="https://boomi.com/form/trial/" className="alt" target="_blank">Free Trial</a>
                 </li>
               </ul>
             </div>

@@ -7,12 +7,25 @@ $hd: 1360px;
 $desktop: 1028px;
 $tablet: 768px;
 
+html {
+  font-weight: 100;
+  line-height: 1.4
+}
+p {
+  font-weight: 400
+}
+
+h4 {
+  font-family: courier-std,monospace!important;
+  font-size: 16px
+}
+
+
 html,
 p,
 h1,
 h2,
 h3,
-h4,
 h5,
 .mw-bs {
   font-family: fieldwork, sans-serif;
@@ -20,34 +33,98 @@ h5,
 }
 
 .mw-bs {
-  color: var(--g4);
-  font-size: 16px;
-  .container {
-  max-width:100%;
-  @media (min-width: $tablet) {
-    width: $desktop;
-  }
-  @media (min-width: $desktop) {
-    width: $hd;
-    
-  }
-  @media (min-width: $hd) {
-    width: 100%;
-    margin:0; padding:0;
+    color: var(--g4);
+    font-size: 16px;
+    .container {
+    max-width:100%;
+    @media (min-width: $tablet) {
+      width: $desktop;
+    }
+    @media (min-width: $desktop) {
+      width: $hd;
+      
+    }
+    @media (min-width: $hd) {
+      width: 100%;
+      margin:0; padding:0;
+    }
+
   }
 
 }
 
+
+
+// $brand1: #033d58;
+// $brand2: #009688;
+// $brand3: #ff7c66;
+// $brand4: #0087cc;
+// $brand5: #fedb00;
+// $grey1: #eeeeee;
+// $grey2: #ababab;
+// $grey3: #808080;
+// $grey4: #454545;
+
+
+.mw-bs {
+ .btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 12px 15px;
+    font-size: 15px;
+    line-height: 1.42857143;
+    border-radius: 0px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+ } 
+ .label-default {      border-radius:0;  background-color:$gray3; }
+}
+
+// Buttons / Labels ==================================================
+$brand-colors: ("primary",$brand1),("success", $brand2),("warning",$brand3), ("danger",$brand4), ("info",$brand5);
+.mw-bs{
+  @each $color in $brand-colors {
+    .label-#{nth($color,1)} {
+      background-color: nth($color,2);
+
+    }
+    .btn-#{nth($color,1)} {
+      background-color: nth($color,2);
+      transition:all 0.3s ease;
+      &:hover, &:focus {
+        background-color: transparent;
+        color: nth($color,2);
+        box-shadow: 0 0 0 1px nth($color,2);
+      }
+      &.ghost {
+        color: nth($color,2);
+        box-shadow: 0 0 0 1px nth($color,2);
+        background-color:transparent;
+        transition:all 0.3s ease;
+        &:hover, &:focus {
+          background-color: transparent;
+          opacity:0.5;
+          color: var(--b1);
+          box-shadow: 0 0 0 1px var(--b1);
+        }
+      }
+    }
+  }
 }
 
 
 
-$brand1: #033d58;
-$brand2: #009688;
-$brand3: #ff7c66;
-$brand4: #0087cc;
-$brand5: #fedb00;
-$grey1: #eeeeee;
-$grey2: #ababab;
-$grey3: #808080;
-$grey4: #454545;
+.fa {
+  font-family: FontAwesome;
+}

@@ -1,7 +1,8 @@
 .mw-bs.container {width:100%;}
-.mw-bs .main:nth-of-type(1) {
-    margin-top:0;
-}
+/* Fixes Spacing at the top */
+.mw-bs .main:nth-of-type(1) { margin-top:0; }
+/* Fixes spacing at the bottom */
+.mw-bs .mw-container { margin-bottom: 0;}
 
 @media(max-width:$tablet) {
     padding-left:0;

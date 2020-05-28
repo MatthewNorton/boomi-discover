@@ -3,14 +3,14 @@ declare var manywho: any;
 import * as React from 'react';
 
 class Hero extends React.Component<any, any> {
-    constructor(props: any) {
-        super(props);
+  constructor(props: any) {
+    super(props);
 
-        this.state = {
-            items: [],
-        };
-      }
-    heroBuild = () => {
+    this.state = {
+        items: [],
+    };
+}
+  heroBuild = () => {
 
         // Get the component's model, which includes any values bound to it
         const model = manywho.model.getComponent(this.props.id, this.props.flowKey);
@@ -51,10 +51,10 @@ class Hero extends React.Component<any, any> {
         console.log('Title', map1);
     }
 
-    componentDidMount() {
+  componentDidMount() {
       this.heroBuild();
     }
-    render() {
+  render() {
 
       return (<div className="wrapper">
             { this.state.items.map((value, index) => {

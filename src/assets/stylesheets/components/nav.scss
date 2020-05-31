@@ -5,6 +5,7 @@
 
 .topnav {
     background: var(--b1);
+    // border-top:3px solid $brand1; 
     
     ul {
         margin: 0;
@@ -26,7 +27,7 @@
         height: 40px;
         line-height: 40px;
         display: block;
-        font-size: 18px;
+        font-size: 16px;
         color: #ffffff;
         text-decoration: none;
         font-weight: 400;
@@ -42,7 +43,7 @@
     }
 }
 .bottomnav {
-    
+
     max-width:$hd;
     margin:0 auto;
     position: relative;
@@ -51,7 +52,7 @@
     &-wrapper {
         
         display: grid;
-        grid-template-columns: repeat(12, minmax(1fr, auto));
+        grid-template-columns: repeat(12, 1fr);
         align-items: center;
     }
 
@@ -59,9 +60,16 @@
         max-width: 160px;
         height: auto;
         grid-column: 1/4;
+        grid-row:1;
         img {
             max-width: 100%;
         }
+    }
+    &-title {
+        grid-column: 6/13;
+        text-align:right;
+        grid-row:1;
+        justify-content: end;
     }
     &-links {
         a {
@@ -85,3 +93,24 @@
 }
 
 // Defaults
+// .bottomnav-links {
+//     // .alt {
+//     //     text-align: right;
+//     //     align-self: center;
+     
+//     //     a { 
+//     //         transition: all 0.3s ease;
+//     //         background: #ff7c66;
+//     //         display: inline-block;
+//     //         height: 100%;
+//     //         font-size: 1.2em;
+//     //         padding: 20px;
+//     //         &:hover, &:focus{
+//     //             text-decoration:none;
+//     //             background:transparent;
+//     //             color:$brand1;
+//     //             box-shadow:0 0 0 2px $brand1;
+//     //         } 
+//     //     } 
+//     // }
+// }

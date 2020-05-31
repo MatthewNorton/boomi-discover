@@ -9,6 +9,7 @@ $footer-link-hover: var(--b3);
     background: url(https://cdn.brandfolder.io/W49AM39J/as/pxklyd-24v5a8-14c0qk/footer-menu-pattern.svg?max_age=604800) center 200px / 1500px repeat-x, #033d58;
     color: #FFF;
     padding:32px 0;
+    margin-top:26px;
   a {
     color:$footer-link-color;
     &:hover, &:focus {
@@ -29,7 +30,7 @@ $footer-link-hover: var(--b3);
   justify-content: space-between;
 }
 
-.footer-column  { }
+// .footer-column  { }
 .footer-column-list {
   margin:0;
   padding:0;

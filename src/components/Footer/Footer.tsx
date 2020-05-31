@@ -10,9 +10,6 @@ class Footer extends React.Component<any, any> {
         items: [],
     };
 }
-  footerLinks = () => {
-
-  }
 
   componentDidMount() {
 

@@ -45,10 +45,6 @@ class Hero extends React.Component<any, any> {
             });
 
         });
-
-        const itemArray = this.state.items;
-        const map1 = itemArray.map((x) => x);
-        console.log('Title', map1);
     }
 
   componentDidMount() {

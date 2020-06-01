@@ -39,6 +39,7 @@ h5,
     max-width:100%;
     @media (min-width: $tablet) {
       width: $desktop;
+      
     }
     @media (min-width: $desktop) {
       width: $hd;
@@ -49,6 +50,9 @@ h5,
       margin:0; padding:0;
     }
 
+  }
+  @media(max-width:$tablet){
+    background-color:#eee;
   }
 
 }
@@ -66,65 +70,91 @@ h5,
 // $grey4: #454545;
 
 
+
+// Utilities
+.fa { font-family: FontAwesome; }
+
+
+// Buttons
 .mw-bs {
- .btn {
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    padding: 12px 15px;
-    font-size: 15px;
-    line-height: 1.42857143;
-    border-radius: 0px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
- } 
- .label-default {      border-radius:0;  background-color:$gray3; }
+  .btn {
+     display: inline-block;
+     margin-bottom: 0;
+     font-weight: normal;
+     text-align: center;
+     white-space: nowrap;
+     vertical-align: middle;
+     -ms-touch-action: manipulation;
+     touch-action: manipulation;
+     cursor: pointer;
+     background-image: none;
+     border: 1px solid transparent;
+     padding: 12px 15px;
+     font-size: 15px;
+     line-height: 1.42857143;
+     border-radius: 0px;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     user-select: none;
+  } 
+  .label-default {      border-radius:0;  background-color:$gray3; }
+ }
+ 
+ // Buttons / Labels ==================================================
+ $brand-colors: ("primary",$brand1),("success", $brand2),("warning",$brand3), ("danger",$brand4), ("info",$brand5);
+ .mw-bs{
+   @each $color in $brand-colors {
+     .label-#{nth($color,1)} {
+       background-color: nth($color,2);
+ 
+     }
+     .btn-#{nth($color,1)} {
+       background-color: nth($color,2);
+       transition:all 0.3s ease;
+       &:hover, &:focus {
+         background-color: transparent;
+         color: nth($color,2);
+         box-shadow: 0 0 0 1px nth($color,2);
+       }
+       &.ghost {
+         color: nth($color,2);
+         box-shadow: 0 0 0 1px nth($color,2);
+         background-color:transparent;
+         transition:all 0.3s ease;
+         &:hover, &:focus {
+           background-color: transparent;
+           opacity:0.5;
+           color: var(--b1);
+           box-shadow: 0 0 0 1px var(--b1);
+         }
+       }
+     }
+   }
+ }
+ 
+@mixin grid($width, $gridcount) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(calc(#{$width}/#{$gridcount}), 1fr));
 }
+ 
+ 
 
-// Buttons / Labels ==================================================
-$brand-colors: ("primary",$brand1),("success", $brand2),("warning",$brand3), ("danger",$brand4), ("info",$brand5);
-.mw-bs{
-  @each $color in $brand-colors {
-    .label-#{nth($color,1)} {
-      background-color: nth($color,2);
 
-    }
-    .btn-#{nth($color,1)} {
-      background-color: nth($color,2);
-      transition:all 0.3s ease;
-      &:hover, &:focus {
-        background-color: transparent;
-        color: nth($color,2);
-        box-shadow: 0 0 0 1px nth($color,2);
-      }
-      &.ghost {
-        color: nth($color,2);
-        box-shadow: 0 0 0 1px nth($color,2);
-        background-color:transparent;
-        transition:all 0.3s ease;
-        &:hover, &:focus {
-          background-color: transparent;
-          opacity:0.5;
-          color: var(--b1);
-          box-shadow: 0 0 0 1px var(--b1);
-        }
-      }
-    }
+// Helper Classes 
+// .mw-bs {
+  .grid-container {
+    display: grid;
   }
-}
+  
+  .grid-container--fill {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+  
 
-
-
-.fa {
-  font-family: FontAwesome;
-}
+  // calc(width of desktop page / # of columns you want for the page) 
+  .grid-container--fit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(calc(#{$hd}/8), 1fr));
+  }
+// }

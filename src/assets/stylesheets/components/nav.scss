@@ -2,10 +2,19 @@
 // ===============================================
 // COMPONENT SPECIFIC
 // ==============================================
-
+.wrapper-nav {
+    background:#ffffff;     
+    position: sticky;
+    top:0; left:0;
+    z-index:200;
+    border-bottom: 1px solid #eee;
+}
 .topnav {
     background: var(--b1);
     // border-top:3px solid $brand1; 
+    @media (max-width:$tablet){
+        text-align: center;
+    }
     
     ul {
         margin: 0;
@@ -13,8 +22,9 @@
         display: grid;
         grid-template-columns: auto;
         grid-template-rows: 1fr;
-        justify-content: end;
+  
         grid-gap: 20px;
+        @media(min-width:$tablet){      justify-content: end;}
     }
     li {
         grid-row: 1;
@@ -46,14 +56,13 @@
 
     max-width:$hd;
     margin:0 auto;
-    position: relative;
-    background:#fff;
-    z-index:200;
     &-wrapper {
-        
         display: grid;
-        grid-template-columns: repeat(12, 1fr);
         align-items: center;
+        grid-gap:0 20px;
+        @media(min-width:$tablet){
+            grid-template-columns: repeat(12, 1fr);
+        }
     }
 
     &-logo {
@@ -61,15 +70,23 @@
         height: auto;
         grid-column: 1/4;
         grid-row:1;
+        @media(max-width:$tablet){
+            grid-column:1;
+        }
         img {
             max-width: 100%;
         }
     }
-    &-title {
+    &-subtitle {
+     
         grid-column: 6/13;
         text-align:right;
         grid-row:1;
         justify-content: end;
+        @media(max-width:$tablet){
+            grid-column:2;
+            font-size:16px;
+        }
     }
     &-links {
         a {

@@ -67,6 +67,10 @@ body {
     --s80: 80px;
     --s90: 90px;
     /* Resolutions */
+
+    /* animation*/
+    --timing: 700ms; 
+    --motion: cubic-bezier(0.19, 1, 0.22, 1);
   }
 
 

@@ -100,6 +100,7 @@ module.exports = function() {
         .replace('{{tenantId}}', flow.tenantId)
         .replace('{{flowId}}', flow.id)
         .replace('{{flowVersionId}}', flow.versionId)
+        .replace('{{templateScripts}}', flow.templateScripts)
         .replace('{{filename-js}}', flow.filenames.js)
         .replace('{{filename-css}}', flow.filenames.css)
     fs.writeFileSync('./build/index.html', template);

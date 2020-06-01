@@ -5,7 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <link rel="icon" href="https://assets.manywho.com/img/favicon.ico">
-    <title>Boomi Flow</title>
+    <title>LOCAL FLOW</title>
+    <link id="theme">
     <style>
         .mw-bs .wait-container {
             position: absolute;
@@ -105,14 +106,23 @@
 
     <script src="https://assets.manywho.com/js/vendor/jquery-2.1.4.min.js"></script>
 
+
+
+
+
+
     <script>
-        var manywho = {
+    var windowOrigin = window.location.origin;
+    var manywho = {
             cdnUrl: 'https://assets.manywho.com',
-            customResources: ['http://localhost:8080/{{filename-js}}', 'http://localhost:8080/{{filename-css}}'],
+            customResources: [
+                '{{templateScripts}}',
+                `${windowOrigin}`+'/{{filename-js}}',
+                `${windowOrigin}`+'/{{filename-css}}'],
             requires: ['core', 'bootstrap3'],
             initialize: function () {
                 var queryParameters = manywho.utils.parseQueryString(window.location.search.substring(1));
-
+                console.log("Query Parameters", queryParameters);
                 manywho.settings.initialize({
                     adminTenantId: 'da497693-4d02-45db-bc08-8ea16d2ccbdf',
                     playerUrl: [ location.protocol, '//', location.host, location.pathname ].join(''),

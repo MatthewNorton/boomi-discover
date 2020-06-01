@@ -3,20 +3,6 @@
 // [Jumbotron]
 // ==============================================
 
-.placeholder {
-    // background: url('https://files-manywho-com.s3.amazonaws.com/833169c7-3807-43da-b087-0995e4eb67c4/placeholder-hero.JPG') no-repeat left top;
-    background: url("https://files-manywho-com.s3.amazonaws.com/833169c7-3807-43da-b087-0995e4eb67c4/placeholder-hero2.JPG")
-      no-repeat center top;
-    width: 100%;
-    height: 513px;
-    display: block;
-    // position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 999;
-    opacity: 0.5;
-    // mix-blend-mode:saturation;
-  }
   
   $hero-bg-color: linear-gradient(90deg, #033d58, #22C5BE);
   $hero-bg: url('https://files-manywho-com.s3.amazonaws.com/833169c7-3807-43da-b087-0995e4eb67c4/homepage-particles-a.png');
@@ -24,11 +10,13 @@
 
   
   .hero-container {
-    height: 465px;
+    min-height: 465px; 
     background:$hero-bg-color;
     position: relative;
     color:#fff;
     padding:40px;
+    margin-bottom: 120px;
+    @media(max-width:$tablet) { padding:30px 10px;  min-height: auto; overflow:hidden}
     &:before {
       content: '';
       position: absolute;
@@ -73,12 +61,18 @@
     }
   
     .hero-title {
-      font-size: 70px;
+      // font-size: 70px;
       font-weight: 800;
       line-height: 1em;
+      @media(min-width:$tablet) {
+        font-size: 70px;
+        font-weight: 800;
+        line-height: 1em;
+      }
     }
     .hero-description {
-     font-size:36px;
+      @media(min-width:$tablet) { font-size:36px; }
+
      margin-bottom: 40px;
     }
     
@@ -92,6 +86,9 @@
     width: 440px;
     height: 430px;
     border-radius: 100%;
+    @media (max-width:$tablet) {
+      opacity:0.7;
+    }
     video {
       position: absolute;
       top: 0; 
@@ -100,11 +97,13 @@
       height: 100%;
       object-fit: cover;
       // overflow:hidden;
+      
       box-shadow: 
       0 0 0 20px darken(rgba($hero-dot-color, 0.8), 10%), 
       0 0 0 40px rgba($hero-dot-color, 0.6), 
       0 0 0 60px rgba($hero-dot-color, 0.4), 
       0 0 0 80px rgba($hero-dot-color, 0.2)
+      
     }
     &:after{
       content:'';
@@ -116,6 +115,7 @@
       background:$hero-bg-color;
       opacity:0.7;
       border-radius:100%;
+      mix-blend-mode: exclusion;
     }
   }
   

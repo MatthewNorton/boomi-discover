@@ -11,9 +11,6 @@ class Footer extends React.Component<any, any> {
     };
 }
 
-  componentDidMount() {
-
-  }
   render() {
       return (
         <footer className="footer">

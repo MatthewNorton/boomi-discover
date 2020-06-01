@@ -104,12 +104,13 @@
   },
   "flow": {
     "tenantId": "833169c7-3807-43da-b087-0995e4eb67c4",
-    "id": "ce89def5-70a4-4437-9dee-89ad95fb962b",
+    "id": "7cc2cc58-0487-4136-b714-0b3e3df442f3",
     "versionId": "",
     "filenames": {
       "js": "custom-component.js",
       "css": "custom-component.css"
-    }
+    },
+    "templateScripts": "https://files-manywho-com.s3.amazonaws.com/833169c7-3807-43da-b087-0995e4eb67c4/fonts.css"
   },
   "peerDependencies": {},
   "bundledDependencies": [],

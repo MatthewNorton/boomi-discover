@@ -50,7 +50,7 @@ class Tiles extends React.Component<any, any> {
       return (
             <div className="wrapper">
                   <div className="tile-wrapper">
-                    <ul className="container">
+                    <ul className="tile-listing">
                         { this.state.items.map((value, index) => {
                           return <li className="tile-item" key={index}>
                             <div className="tile-img">

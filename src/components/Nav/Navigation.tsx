@@ -37,7 +37,7 @@ class Navigation extends React.Component<any, any> {
     render() {
 
         return (
-          <div id="wrapper">
+          <div className="wrapper wrapper-nav">
             <div className="topnav">
               <ul>
                 <li>
@@ -58,7 +58,7 @@ class Navigation extends React.Component<any, any> {
                       <img src="https://cdn.brandfolder.io/W49AM39J/as/pxzggw-bgotog-1vnhuw/boomi-website-logo.svg?max_age=604800" alt=""></img>
                       </a>
                   </h1>
-                  <h4 className="bottomnav-title">Experiment Innovation | Boomi Solution Catalog</h4>
+                  <h4 className="bottomnav-subtitle">Experiment Innovation | Boomi Solution Catalog</h4>
                   { this.state.items.length > 0 &&
                   <nav className="bottomnav-links">
                     <ul>

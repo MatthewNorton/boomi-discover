@@ -1,6 +1,7 @@
 declare var manywho: any;
 
 import * as React from 'react';
+import Tile from './Tile';
 
 class Tiles extends React.Component<any, any> {
     constructor(props: any) {
@@ -21,6 +22,7 @@ class Tiles extends React.Component<any, any> {
         const title = result.properties.find((property: any) => property.typeElementPropertyId === columns[4].typeElementPropertyId);
         const description = result.properties.find((property: any) => property.typeElementPropertyId === columns[5].typeElementPropertyId);
         const image = result.properties.find((property: any) => property.typeElementPropertyId === columns[6].typeElementPropertyId);
+        const order = result.properties.find((property: any) => property.typeElementPropertyId === columns[7].typeElementPropertyId);
 
         this.state.items.push({
           icon: icon.contentValue,
@@ -30,6 +32,7 @@ class Tiles extends React.Component<any, any> {
           title: title.contentValue,
           description: description.contentValue,
           image: image.contentValue,
+          order: order.contentValue,
         });
 
     });
@@ -43,43 +46,34 @@ class Tiles extends React.Component<any, any> {
   }
     render() {
       const state = this.state;
-      /* List the categories in one long array and split them based on commas */
-      const categoryArray = () => {
+      const categorySplit = () => {
         return state.items.map((a, i) => a.categories.split(','));
       };
+      const tileListing = [].concat(this.state.items)
+      .sort((a, b) => a.order - b.order)
+      .map((value, i) =>
+        <ul className="tile-listing">
+          <Tile
+            key={i}
+            icon={value.icon}
+            image={value.image}
+            title={value.title}
+            description={value.description}
+            categories={categorySplit()[i].map((t) => <span className="label label-warning">{t}</span>)}
+            example={value.example}
+            learnmore={value.learnmore}
+            order={value.order}
+          />,
+        </ul>,
+      );
+      console.log();
       return (
             <div className="wrapper">
                   <div className="tile-wrapper">
                     <ul className="tile-listing">
-                        { this.state.items.map((value, index) => {
-                          return <li className="tile-item" key={index}>
-                            <div className="tile-img">
-                              <img src={value.image} alt=""/>
-                            </div>
-                            <div className="tile-content">
-                              <div className="tile-icon"><img src={value.icon} alt={value.title} /></div>
-                              <div className="tile-title"><h4>{value.title}</h4></div>
-                              <div className="tile-description"><p>{value.description}</p></div>
-                              <div className="tile-learnmore"><a className="btn btn-success" href={value.learnmore} target="_blank">Learn More</a></div>
-                              { value.example.length > 0 &&
-                                  <div className="tile-example">
-                                    <a href={value.example} className="btn btn-success ghost" target="_blank">Live Example</a>
-                                  </div>
-                              }
-                              <div className="tile-label"> {
-                                categoryArray()[index].map((t) =>
-                                  <span className="label label-warning">{t}</span>)
-                                }
-                              </div>
-
-                            </div>
-
-                          </li>;
-                          })
-                        }
-                      </ul>
+                      {tileListing}
+                    </ul>
                   </div>
-
             </div>
 
         );

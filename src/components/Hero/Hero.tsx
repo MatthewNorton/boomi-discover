@@ -63,16 +63,18 @@ class Hero extends React.Component<any, any> {
                     </div>
 
                     <div className="hero-dot">
-                      <video
-                        playsinline={true}
-                        autoPlay={true}
-                        muted={true}
-                        loop={true}
-                        width="100%"
-                        height="100%"
-                        >
-                        <source src={value.videoSource} type="video/mp4"></source>
-                      </video>
+                      <div id="hero-video">
+                          <video
+                            playsinline={true}
+                            autoPlay={true}
+                            muted={true}
+                            loop={true}
+                            width="100%"
+                            height="100%"
+                            >
+                            <source src={value.videoSource} type="video/mp4"></source>
+                          </video>
+                        </div>
                     </div>
                 </div>
               </div>;

@@ -10,7 +10,7 @@
     border-bottom: 1px solid #eee;
 }
 .topnav {
-    background: var(--b1);
+    background: $brand1;
     // border-top:3px solid $brand1; 
     @media (max-width:$tablet){
         text-align: center;
@@ -19,12 +19,18 @@
     ul {
         margin: 0;
         padding: 0;
-        display: grid;
-        grid-template-columns: auto;
-        grid-template-rows: 1fr;
-  
-        grid-gap: 20px;
-        @media(min-width:$tablet){      justify-content: end;}
+        display:flex;
+        justify-content: flex-end;
+        width:1360px;
+        max-width:100%;
+        margin:0 auto; 
+        @supports (display: grid) {
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: 1fr;
+            grid-gap: 20px;
+            @media(min-width:$tablet){ justify-content: end;}
+        }
     }
     li {
         grid-row: 1;
@@ -43,12 +49,12 @@
         font-weight: 400;
         &:hover,
         &:focus {
-            background: var(--g4);
+            background: $gray4;
         }
         &.alt {
-            background: var(--b3);
+            background: $brand3;
             padding: 0 2.6rem;
-            color: var(--b1);
+            color: $brand1;
         }
     }
 }
@@ -57,16 +63,21 @@
     max-width:$hd;
     margin:0 auto;
     &-wrapper {
-        display: grid;
         align-items: center;
-        grid-gap:0 20px;
-        @media(min-width:$tablet){
-            grid-template-columns: repeat(12, 1fr);
+        display:flex;
+        justify-content: space-between;
+        flex-direction: row;
+        @supports (display: grid) {
+            display: grid;
+            grid-gap:0 20px;
+            @media(min-width:$tablet){
+                grid-template-columns: repeat(12, 1fr);
+            }
         }
     }
 
     &-logo {
-        max-width: 160px;
+        width: 160px;
         height: auto;
         grid-column: 1/4;
         grid-row:1;
@@ -83,6 +94,7 @@
         text-align:right;
         grid-row:1;
         justify-content: end;
+        align-self:center;
         @media(max-width:$tablet){
             grid-column:2;
             font-size:16px;
@@ -109,25 +121,3 @@
     }
 }
 
-// Defaults
-// .bottomnav-links {
-//     // .alt {
-//     //     text-align: right;
-//     //     align-self: center;
-     
-//     //     a { 
-//     //         transition: all 0.3s ease;
-//     //         background: #ff7c66;
-//     //         display: inline-block;
-//     //         height: 100%;
-//     //         font-size: 1.2em;
-//     //         padding: 20px;
-//     //         &:hover, &:focus{
-//     //             text-decoration:none;
-//     //             background:transparent;
-//     //             color:$brand1;
-//     //             box-shadow:0 0 0 2px $brand1;
-//     //         } 
-//     //     } 
-//     // }
-// }

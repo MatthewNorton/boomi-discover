@@ -101,42 +101,6 @@ h5,
   .label-default {      border-radius:0;  background-color:$gray3; }
  }
  
- // Buttons / Labels ==================================================
- $brand-colors: ("primary",$brand1),("success", $brand2),("warning",$brand3), ("danger",$brand4), ("info",$brand5);
- .mw-bs{
-   @each $color in $brand-colors {
-     .label-#{nth($color,1)} {
-       background-color: nth($color,2);
- 
-     }
-     .btn-#{nth($color,1)} {
-       background-color: nth($color,2);
-       transition:all 0.3s ease;
-       &:hover, &:focus {
-         background-color: transparent;
-         color: nth($color,2);
-         box-shadow: 0 0 0 1px nth($color,2);
-       }
-       &.ghost {
-         color: nth($color,2);
-         box-shadow: 0 0 0 1px nth($color,2);
-         background-color:transparent;
-         transition:all 0.3s ease;
-         &:hover, &:focus {
-           background-color: transparent;
-           opacity:0.5;
-           color: var(--b1);
-           box-shadow: 0 0 0 1px var(--b1);
-         }
-       }
-     }
-   }
- }
- 
-@mixin grid($width, $gridcount) {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(calc(#{$width}/#{$gridcount}), 1fr));
-}
  
  
 
@@ -158,3 +122,46 @@ h5,
     grid-template-columns: repeat(auto-fit, minmax(calc(#{$hd}/8), 1fr));
   }
 // }
+
+
+
+
+
+
+// UTILITIES Mixins Etc...==============================================================
+// Buttons / Labels ==================================================
+$brand-colors: ("primary",$brand1),("success", $brand2),("warning",$brand3), ("danger",$brand4), ("info",$brand5);
+.mw-bs{
+  @each $color in $brand-colors {
+    .label-#{nth($color,1)} {
+      background-color: nth($color,2);
+
+    }
+    .btn-#{nth($color,1)} {
+      background-color: nth($color,2);
+      transition:all 0.3s ease;
+      &:hover, &:focus {
+        background-color: transparent;
+        color: nth($color,2);
+        box-shadow: 0 0 0 1px nth($color,2);
+      }
+      &.ghost {
+        color: nth($color,2);
+        box-shadow: 0 0 0 1px nth($color,2);
+        background-color:transparent;
+        transition:all 0.3s ease;
+        &:hover, &:focus {
+          background-color: transparent;
+          opacity:0.5;
+          color: var(--b1);
+          box-shadow: 0 0 0 1px var(--b1);
+        }
+      }
+    }
+  }
+}
+
+@mixin grid($width, $gridcount) {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(calc(#{$width}/#{$gridcount}), 1fr));
+}

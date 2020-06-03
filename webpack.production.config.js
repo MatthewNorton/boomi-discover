@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WriteFilePlugin = require('write-file-webpack-plugin');
+const postcssPresetEnv = require( 'postcss-preset-env' );
 const flow = require('./package.json').flow;
 
 module.exports = function(env) {
@@ -38,8 +39,24 @@ module.exports = function(env) {
                     enforce: "pre",
                 },
                 {
-                    test: /\.(s*)css$/,
-                    use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+                    test: /\.s[ac]ss$/i,
+                    use: [
+                        { loader: MiniCssExtractPlugin.loader },
+                        { loader: 'css-loader' },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: () => [ 
+                                    
+                                    postcssPresetEnv( { 
+                                        stage: 3,
+                                        autoprefixer: { grid: true},
+                                        browsers: ['last 2 versions', 'ie 6-8', 'Firefox > 20'],
+                                    } ) ],
+                            },
+                        },
+                        { loader: 'sass-loader' },
+                    ],
                 },
                 { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
             ]
@@ -50,7 +67,10 @@ module.exports = function(env) {
         },
         plugins: [
             new WriteFilePlugin(),
-            new MiniCssExtractPlugin({ filename: flow.filenames.css })
+            new MiniCssExtractPlugin({ filename: flow.filenames.css }),
+            require('autoprefixer'),
+            require('cssnano'),
+            
         ],
     }
 

@@ -16,10 +16,10 @@ class Footer extends React.Component<any, any> {
         <footer className="footer">
           <div className="container">
             <div className="footer-wrapper">
-              <div className="footer-column">
-                <div className="footer-column-box">
-                  <a href="https://boomi.com/platform/" target="_blank" className="footer-column-headline">Platform</a>
-                  <ul className="footer-column-list">
+              <div className="footer-col">
+                <div className="footer-col--box">
+                  <a href="https://boomi.com/platform/" target="_blank" className="footer-col--headline">Platform</a>
+                  <ul className="footer-col--box-list">
                     <li><a href="https://boomi.com/platform/integration/" target="_blank">Integration</a></li>
                     <li><a href="https://boomi.com/platform/master-data-hub/" target="_blank">Master Data Hub</a></li>
                     <li><a href="https://boomi.com/platform/b2b-management/" target="_blank">B2B/EDI Management</a></li>
@@ -28,61 +28,61 @@ class Footer extends React.Component<any, any> {
                   </ul>
                 </div>
               </div>
-              <div className="footer-column">
-                <div className="footer-column-box">
-                  <a href="https://boomi.com/solutions/" target="_blank" className="footer-column-headline">Solutions</a>
+              <div className="footer-col">
+                <div className="footer-col--box">
+                  <a href="https://boomi.com/solutions/" target="_blank" className="footer-col--headline">Solutions</a>
                 </div>
-                <div className="footer-column-box">
-                  <a href="https://boomi.com/services/" target="_blank" className="footer-column-headline">Services &amp; Training</a>
-                  <ul className="footer-column-list">
+                <div className="footer-col--box">
+                  <a href="https://boomi.com/services/" target="_blank" className="footer-col--headline">Services &amp; Training</a>
+                  <ul className="footer-col--box-list">
                     <li><a href="https://boomi.com/services/training/" target="_blank">Training and Certification</a></li>
                     <li><a href="https://train.boomi.com/#/login" target="_blank">Training Login</a></li>
                   </ul>
                 </div>
               </div>
-              <div className="footer-column">
-                <div className="footer-column-box">
-                  <a href="https://resources.boomi.com/" target="_blank" className="footer-column-headline">Resources</a>
-                  <ul className="footer-column-list">
+              <div className="footer-col">
+                <div className="footer-col--box">
+                  <a href="https://resources.boomi.com/" target="_blank" className="footer-col--headline">Resources</a>
+                  <ul className="footer-col--box-list">
                     <li><a href="https://resources.boomi.com/blog-dell-boomi" target="_blank">Blog</a></li>
                     <li><a href="https://resources.boomi.com/upcoming-webinars" target="_blank">Upcoming Webinars</a></li>
                     <li><a href="https://resources.boomi.com/product-demos" target="_blank">Demos</a></li>
                   </ul>
                 </div>
               </div>
-              <div className="footer-column">
-                <div className="footer-column-box">
-                  <a href="https://boomi.com/company/" target="_blank" className="footer-column-headline">Company</a>
-                  <ul className="footer-column-list">
+              <div className="footer-col">
+                <div className="footer-col--box">
+                  <a href="https://boomi.com/company/" target="_blank" className="footer-col--headline">Company</a>
+                  <ul className="footer-col--box-list">
                     <li><a href="https://boomi.com/company/leadership-team/" target="_blank">Leadership Team</a></li>
                     <li><a href="https://boomi.com/company/careers/" target="_blank">Careers</a></li>
                     <li><a href="https://boomi.com/company/events/" target="_blank">Events</a></li>
                   </ul>
                 </div>
               </div>
-              <div className="footer-column">
-                <div className="footer-column-box">
-                  <a href="https://boomi.com/customers/" target="_blank" className="footer-column-headline">Customers</a>
-                  <ul className="footer-column-list">
+              <div className="footer-col">
+                <div className="footer-col--box">
+                  <a href="https://boomi.com/customers/" target="_blank" className="footer-col--headline">Customers</a>
+                  <ul className="footer-col--box-list">
                     <li><a href="https://boomi.com/customers/find-customer/" target="_blank">Find a Customer</a></li>
                   </ul>
                 </div>
-                <div className="footer-column-box">
-                  <a href="https://boomi.com/partners/" target="_blank" className="footer-column-headline">Partners</a>
-                  <ul className="footer-column-list">
+                <div className="footer-col--box">
+                  <a href="https://boomi.com/partners/" target="_blank" className="footer-col--headline">Partners</a>
+                  <ul className="footer-col--box-list">
                     <li><a href="https://boomi.com/partners/find-a-partner/" target="_blank">Find a Partner</a></li>
                     <li><a href="https://partners.boomi.com/" target="_blank">Partner Login</a></li>
                   </ul>
                 </div>
-                <div className="footer-column-box">
-                  <a href="https://community.boomi.com/" target="_blank" className="footer-column-headline">Community</a>
-                  <ul className="footer-column-list">
+                <div className="footer-col--box">
+                  <a href="https://community.boomi.com/" target="_blank" className="footer-col--headline">Community</a>
+                  <ul className="footer-col--box-list">
                     <li><a href="https://community.boomi.com/s/login/" target="_blank">Community Login</a></li>
                   </ul>
                 </div>
               </div>
-              <div className="footer-column footer-social">
-                <a href="" className="footer-column-headline">Contact Us</a>
+              <div className="footer-col footer-social">
+                <a href="" className="footer-col--headline">Contact Us</a>
                 <ul className="footer-social list-unstyled">
                   <li><a href="https://twitter.com/boomi" target="_blank" className="icon-outline icon-sm"><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
                   <li><a href="https://www.facebook.com/DellBoomi/" target="_blank" className="icon-outline icon-sm"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>

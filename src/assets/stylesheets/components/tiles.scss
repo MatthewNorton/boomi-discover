@@ -3,23 +3,34 @@
     margin-top: 120px;
     max-width: $hd;
     margin: 0 auto;
-    .tile-listing {
-        @include grid(#{$hd}, 5);
-        grid-gap: 40px;
-        margin: 0;
-        padding: 0;
-        @media(max-width:$hd) {
-            padding:0 10px;
-        }
-    }
+
 
 
 }
+.tile-listing {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    @supports (display:grid){
+        @include grid(#{$hd}, 5);
+        grid-gap: 40px;
+    }
+    @media(max-width:$hd) {
+        padding:0 10px;
+    }
+}
+
 .tile-item {
     position: relative;
     display: grid;
     grid-gap: 0px;
     grid-template-rows: 80px 1fr; /* img + content */
+    max-width:300px;
+    @supports (display:grid){
+        max-width:100%;
+    }
     &:hover, &:focus{
         .tile-img {
             background:$brand2;
@@ -51,7 +62,8 @@
             }
         }
     }
-    @include grid(#{$hd}, 7);
+
+
     .tile-content {
         position: relative;
         grid-row: 2;
@@ -123,3 +135,5 @@
 .label {
     font-weight: 100;
 }
+
+

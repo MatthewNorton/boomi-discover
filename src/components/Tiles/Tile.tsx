@@ -15,8 +15,7 @@ const Tile: React.FC<TileProps> = ({ icon, categories, example, learnmore, title
             <div className="tile-img">
                 <img src={image} alt={title}/>
             </div>
-            <div><h3 style={{color: 'red'}}>ORDER #: {order}</h3></div>
-            <div className="tile-content">
+            <div className="tile-content" data-order={order}>
                 <div className="tile-icon"><img src={icon} alt={title} /></div>
                 <div className="tile-title"><h4>{title}</h4></div>
                 <div className="tile-description"><p>{description}</p></div>

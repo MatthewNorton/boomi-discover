@@ -8,11 +8,31 @@ class Tiles extends React.Component<any, any> {
       super(props);
       this.state = {
           items: [],
+          itemTable: [],
       };
   }
+
     tileLoop = () => {
     const model = manywho.model.getComponent(this.props.id, this.props.flowKey);
     const columns = manywho.component.getDisplayColumns(model.columns);
+
+    // const testAr = this.state.itemTable.push(model.objectData.map((x) => x));
+    let i;
+    let d;
+    const sample = new Array();
+    const Data = model.objectData;
+
+    console.log('Data =??????????????????????', Data);
+    console.log(Data.length);
+
+    for (i = 0; i < Data.length; i++) {
+      const devName = Data[i].properties.map((x) => x.developerName);
+      const tableContent = Data[i].properties.map((x) => x.contentValue);
+      this.state.itemTable.push(tableContent);
+    }
+
+    console.log('Item Table',
+    this.state.itemTable);
 
     model.objectData.forEach((result: any) => {
         const icon = result.properties.find((property: any) => property.typeElementPropertyId === columns[0].typeElementPropertyId);
@@ -36,10 +56,6 @@ class Tiles extends React.Component<any, any> {
         });
 
     });
-
-    // const itemArray = this.state.items;
-    // const map1 = itemArray.map((x) => x);
-    // console.log(map1);
   }
     componentDidMount() {
     this.tileLoop();
@@ -52,7 +68,6 @@ class Tiles extends React.Component<any, any> {
       const tileListing = [].concat(this.state.items)
       .sort((a, b) => a.order - b.order)
       .map((value, i) =>
-        <ul className="tile-listing">
           <Tile
             key={i}
             icon={value.icon}
@@ -64,7 +79,6 @@ class Tiles extends React.Component<any, any> {
             learnmore={value.learnmore}
             order={value.order}
           />,
-        </ul>,
       );
       console.log();
       return (

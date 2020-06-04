@@ -10,7 +10,6 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack -p --config webpack.production.config.js",
-    "build-production": "cross-env NODE_ENV=production webpack --config webpack.production.config.js",
     "build-no-source-map": "webpack -p --config webpack.production.config.js --devtool none",
     "upload": "node upload.js",
     "test-unit": "jest --watch",

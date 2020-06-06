@@ -20,7 +20,7 @@ const Tile: React.FC<TileProps> = ({ icon, categories, example, learnmore, title
                 <div className="tile-title"><h4>{title}</h4></div>
                 <div className="tile-description"><p>{description}</p></div>
                 <div className="tile-learnmore"><a className="btn btn-success" href={learnmore} target="_blank">Learn More</a></div>
-                { example.length > 0 &&
+                { example === null &&
                     <div className="tile-example">
                         <a href={example} className="btn btn-success ghost" target="_blank">Live Example</a>
                     </div>
@@ -29,9 +29,7 @@ const Tile: React.FC<TileProps> = ({ icon, categories, example, learnmore, title
             </div>
         </li>;
 
-}
-
-    ;
+};
 
 Tile.defaultProps = {
     icon: 'https://files-manywho-com.s3.amazonaws.com/833169c7-3807-43da-b087-0995e4eb67c4/Charity-and-Donation-LG.png',

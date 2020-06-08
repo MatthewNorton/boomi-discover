@@ -103,17 +103,16 @@ class Tiles extends React.Component<any, any> {
 
       // List of Tags
       const tagObj = state.tags;
-
       // Seperate strings into invidiaul tags arrays
       const tagSplit = tagObj.map((x) => (x.categories.split(',')));
-
       // Merge Tags & sort
       const tagArray = [].concat(...tagSplit);
-
       // Remove Duplicates
       const tags = [...new Set(tagArray)];
+      const tagItems = tags.sort().map((tag) => <h3>{tag}</h3>); // Front End of the Array
 
-      const tagItems = tags.sort().map((tag) => <h3>{tag}</h3>);
+      // Step 1. Show items based on tag/category clicked.
+      // Step 2. remove
 
       return (
             <div className="wrapper">

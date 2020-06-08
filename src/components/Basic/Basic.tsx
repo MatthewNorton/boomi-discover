@@ -8,24 +8,24 @@ class Basic extends React.Component<any, any> {
           items: [],
       };
   }
-  tileLoop = () => {
+    tileLoop = () => {
     const model = manywho.model.getComponent(this.props.id, this.props.flowKey);
     const columns = manywho.component.getDisplayColumns(model.columns);
 
-    // Should not recieve Null 
-    console.log("Table Array", model.objectData);
+    // Should not recieve Null
+    console.log('Table Array', model.objectData);
 
     model.objectData.forEach((result: any) => {
         const title = result.properties.find((property: any) => property.typeElementPropertyId === columns[0].typeElementPropertyId);
 
-        // Adds Title Proptery to array to be displayed. 
+        // Adds Title Proptery to array to be displayed.
         this.state.items.push({
           title: title.contentValue,
         });
 
     });
   }
-  componentDidMount() {
+    componentDidMount() {
     // Loaded functions after run time. (Required or otherwise return undefined)
     this.tileLoop();
   }

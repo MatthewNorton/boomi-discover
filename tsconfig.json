@@ -6,7 +6,7 @@
         "module": "commonjs",
         "target": "es5",
         "jsx": "react",
-        "lib": ["esnext", "dom"],
+        "lib": ["dom","es7"],
         "skipLibCheck": true,
         "downlevelIteration": true,
         "typeRoots": [

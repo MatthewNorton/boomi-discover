@@ -28,6 +28,7 @@
     grid-gap: 0px;
     grid-template-rows: 80px 1fr; /* img + content */
     max-width:300px;
+    transition: opacity 0.1s;
     @supports (display:grid){
         max-width:100%;
     }

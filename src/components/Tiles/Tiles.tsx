@@ -38,8 +38,8 @@ class Tile extends React.Component<any, TileProps> {
                     </div>
                 }
                 <div className="tile-label">
-                  {/* {props.tagged.map((tag) => <span className="label label-warning">{tag}</span>)} */}
-                  {props.categories}
+                  {this.props.categories.map((tag) => <span data-value={tag} onClick={props.click} className="label label-warning">{tag}</span>)}
+                  {/* {props.categories} */}
                 </div>
 
             </div>
@@ -47,13 +47,44 @@ class Tile extends React.Component<any, TileProps> {
   }
 }
 
+// const TagsList = ({tags, onTagDelete, hashtag}) => {
+//   const list = tags.map((tag, index) => (
+//     <Tag
+//       name={tag}
+//       onDelete={onTagDelete}
+//       index={index}
+//       hashtag={hashtag} />
+//   ));
+//   return (
+//     <ul name="tagsList" className="tagsList">
+//       {list}
+//     </ul>
+//   );
+// };
+
+const tileListing = (props) => {
+  return props.tile.map((value, i) => <Tile
+      key={i}
+      icon={value.icon}
+      image={value.image}
+      title={value.title}
+      description={value.description}
+      // description={value.categories}
+      categories={value.categories}
+      example={value.example}
+      learnmore={value.learnmore}
+      order={value.order}
+    />,
+    );
+};
+
 class Tiles extends React.Component<any, any> {
     constructor(props: any) {
       super(props);
       this.state = {
           items: [],
           tags: [],
-          visibility: 'all',
+          visibility: 'Boomi Solutions',
       };
 
       this.cardFilterAction = this.cardFilterAction.bind(this);
@@ -96,8 +127,7 @@ class Tiles extends React.Component<any, any> {
 
     cardFilterAction = (event) => {
       this.setState({
-        visibility: event.target.value,
-
+        visibility: event.target.getAttribute('data-value'),
       });
       console.log(this.state.visibility);
 
@@ -107,12 +137,13 @@ class Tiles extends React.Component<any, any> {
       const state = this.state;
       const tileListing = [].concat(this.state.items).sort((a, b) => a.order - b.order);
       const category = state.items.map((a, i) => a.categories);
-      const Split = state.items.map((a, i) => a.categories.split(','));
+      const Split = state.items.map((a, i) => a.categories.split(', '));
+      const tileCategory = [...new Set(Split)];
       console.log(this.state.items.indexOf(this.state.visibility) > -1);
       return this.state.items.filter((item) => {
           return (
             // this.state.visibility !== 'all') ? (item.categories.toLowerCase() === this.state.visibility.toLowerCase()) : true;
-            this.state.visibility !== 'all') ? (item.categories.split(',').join(', ').indexOf(this.state.visibility, -1) > -1) : true;
+            this.state.visibility !== 'Boomi Solutions') ? (item.categories.split(',').join(',').indexOf(this.state.visibility, -1) > -1) : true;
         }).map((value, i) => {
           return (<Tile
             key={i}
@@ -121,12 +152,13 @@ class Tiles extends React.Component<any, any> {
             title={value.title}
             description={value.description}
             // description={value.categories}
-            categories={value.categories}
+            categories={value.categories.split(',')}
             example={value.example}
             learnmore={value.learnmore}
             order={value.order}
+            click={this.cardFilterAction}
           />);
-        });
+          });
     }
 
     componentDidMount() {
@@ -146,7 +178,6 @@ class Tiles extends React.Component<any, any> {
 
       // List of Tags
       const tagObj = this.state.tags;
-
       // const addAll = tagObj.push('All');
       // Seperate strings into invidiaul tags arrays
       const tagSplit = tagObj.map((x) => (x.tags.split(',')));
@@ -154,26 +185,33 @@ class Tiles extends React.Component<any, any> {
       const tagArray = [].concat(...tagSplit);
       // Remove Duplicates
       const tags = [...new Set(tagArray)];
-      const tagItems = tags.sort().map((tag, i) =>
-        <button className="button cell large-4" value={...tag} onClick={this.cardFilterAction}>{tag}</button>,
+      const tagNav = <div className="tag-nav-wrapper">
+          <div className="tag-nav-headline">
+            <h2>{this.state.visibility}</h2>
+          </div>
+          <div className="tag-nav-listing">
+            <button className="tag-nav-item" data-value="Boomi Solutions" onClick={this.cardFilterAction}>All</button>
+            {tags.sort().map((tag, i) => <button className="tag-nav-item" data-value={tag} onClick={this.cardFilterAction}>{tag}</button>)}
+          </div>
 
-      ); // Front End of the Array
+        </div>;
 
-      // Step 1. Show items based on tag/category clicked.
-      // Step 2. remove
+    //     return
+    //         {/* <button className="button cell large-4" value="all" onClick={this.cardFilterAction}>All</button> */}
+    //         {
+    //           tags.sort().map((tag, i) => <button className="button cell large-4" value={...tag} onClick={this.cardFilterAction}>{tag}</button>)}
+    //     </div>;
+    // };
 
       return (
             <div className="wrapper">
-                  <h1>Filtering</h1>
+                  {tagNav}
 
-                  {tagItems}
                   <div className="tile-wrapper">
                     <ul className="tile-listing">
-                    <button className="button cell large-4" value="all" onClick={this.cardFilterAction}>All</button>
-                    {this.renderCards()}
+                      {this.renderCards()}
                     </ul>
                   </div>
-
             </div>
 
         );

@@ -42,20 +42,76 @@ const Tile = ({
 </li>);
 };
 
+/* ########################## */
+/* ##### TILE LISTING ##### */
+/* ########################## */
+
+/* ########################## */
+/* ##### Filter Nav ##### */
+/* ########################## */
+
+/* ########################## */
+/* ##### FLOW TABLE ##### */
+/* ########################## */
+// const tileLoop = ({
+
+// }) => {
+
+// }
+
+/* ########################## */
+/* ##### EVENTS ##### */
+/* ########################## */
+
+/* ########################## */
+/* ##### MAIN APP (TIED EVERYTHING NICELY) ##### */
+/* ########################## */
+
+// const TagsList = ({tags, onTagDelete, hashtag}) => {
+//   const list = tags.map((tag, index) => (
+//     <Tag
+//       name={tag}
+//       onDelete={onTagDelete}
+//       index={index}
+//       hashtag={hashtag} />
+//   ));
+//   return (
+//     <ul name="tagsList" className="tagsList">
+//       {list}
+//     </ul>
+//   );
+// };
+
+// const tileListing = (props) => {
+//   return props.tile.map((value, i) => <Tile
+//       key={i}
+//       icon={value.icon}
+//       image={value.image}
+//       title={value.title}
+//       description={value.description}
+//       tags={value.tags}
+//       liveUrl={value.liveUrl}
+//       learnUrl={value.learnUrl}
+//       order={value.order}
+//     />,
+//     );
+// };
+
 class Tiles extends React.Component<any, any> {
     constructor(props: any) {
       super(props);
       this.state = {
           items: [],
+          s: [],
           visibility: 'Boomi Solutions',
       };
 
       this.tileFilterAction = this.tileFilterAction.bind(this);
       this.renderTiles = this.renderTiles.bind(this);
+
     }
 
     tileFilterAction = (event) => {
-
       this.setState({
         visibility: event.target.getAttribute('data-value'),
       });
@@ -66,7 +122,7 @@ class Tiles extends React.Component<any, any> {
           return (
             // this.state.visibility !== 'all') ? (item.tags.toLowerCase() === this.state.visibility.toLowerCase()) : true;
             this.state.visibility !== 'Boomi Solutions') ? (item.tags.split(',').join(',').indexOf(this.state.visibility, -1) > -1) : true;
-        }).sort((a, b) => a.order - b.order).map((value, i) => {
+        }).map((value, i) => {
           return (<Tile
             key={i}
             icon={value.icon}
@@ -86,6 +142,70 @@ class Tiles extends React.Component<any, any> {
       const model = manywho.model.getComponent(this.props.id, this.props.flowKey);
       const columns = manywho.component.getDisplayColumns(model.columns);
       const dataTable = model.objectData;
+      let newRow;
+      // let test;
+      // // for (let i = 0; dataTable.length > i; i++) {
+      // //     test = dataTable[i].properties;
+      // //     i++;
+      // //   }
+      // let g;
+
+      const test = [];
+      for (let i = 0; dataTable.length > i; i++) {
+        console.log(dataTable[i].properties);
+        const c = dataTable[i].properties[i].contentValue;
+        const d = dataTable[i].properties[i].developerName;
+        newRow = {[d]: c};
+        // console.log(newRow);
+
+        // const a = test.map((x) => [x.developerName]:x.contentValue);
+        // const b = test.map((x) => x.contentValue);
+        // console.log(
+        //   {[a]: b},
+        // );
+        // this.state.s.push({
+        //   [dataTable[i].properties.developerName]: dataTable[i].properties.contentValue,
+        // });
+        // for (let p = 0; property.length > p; p++) {
+        //   console.log(property[i]);
+        // }
+        i++;
+      }
+      for (const a of test) {
+        console.log(a.contentValue);
+
+      }
+      // for (const row of dataTable) {
+      //   for (const property of newRow) {
+      //     new Row = {
+      //       [[property.developerName]: property.contentValue]
+      //     }
+      //   }
+      // }
+
+      // console.log(newRow);
+      // console.log(this.state.s);
+      // dataTable.forEach((result: any) => {
+      //   console.log(result.map((x) => x.properties));
+
+      //   result.properties.forEach((property) => {
+
+      //   });
+      // });
+
+      // console.log(g);
+
+      // for (let i = 0; newItem.properties.length > i; i++) {
+        // newItem.push(row.properties[i].developerName);
+      // }
+      // console.log(this.state.s);
+      // console.log(newItem.map((x) => x));
+
+      // for (let i = 0; dataTable.length > i; i++) {
+      //   let col;
+      //   // console.log(col[i]);
+      //   console.log(result.properties.find((property: any) => property.typeElementPropertyId === columns[i].typeElementPropertyId));
+      // }
 
       dataTable.forEach((result: any) => {
 
@@ -144,14 +264,21 @@ class Tiles extends React.Component<any, any> {
           </div>
 
         </div>;
+
+    //     return
+    //         {/* <button className="button cell large-4" value="all" onClick={this.cardFilterAction}>All</button> */}
+    //         {
+    //           tags.sort().map((tag, i) => <button className="button cell large-4" value={...tag} onClick={this.cardFilterAction}>{tag}</button>)}
+    //     </div>;
+    // };
+
       return (
             <div className="wrapper">
                   {tagNav}
+
                   <div className="tile-wrapper">
                     <ul className="tile-listing">
-
-                        {this.renderTiles()}
-
+                      {this.renderTiles()}
                     </ul>
                   </div>
             </div>

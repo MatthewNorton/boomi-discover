@@ -68,7 +68,7 @@
     .tile-content {
         position: relative;
         grid-row: 2;
-        padding: 20px;
+        padding: 12px;
         background: #fff;
         -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
@@ -76,18 +76,20 @@
             display: grid;
             grid-gap: 10px;
             grid-template-columns: 40px repeat(2, 1fr) auto;
-            grid-template-rows: fit-content(10ch) 1.2fr 50px 50px auto;
+            grid-template-rows: .5fr .5fr 0.7fr 50px auto;
             grid-template-areas:
             'tileicon title title'
             'description description description'
-            'learn learn example'
+            'learn . live'
             'label label label';
+
         }
     }
     .tile-icon {
         grid-area: tileicon;
         img {
-            max-width: 40px;
+            max-width: 100%;
+            height:40px;
         }
         @media (max-width:$desktop){
             text-align: center;
@@ -102,16 +104,18 @@
         grid-area: description;
     }
 
-    .tile-learnmore {
+    .tile-learn {
         grid-area: learn;
         align-self: center;
+        
         @media (max-width:$desktop){
             margin-bottom: 20px;
+            
         }
     }
 
-    .tile-example {
-        grid-area: example;
+    .tile-live {
+        grid-area: live;
         align-self: center;
         @media (max-width:$desktop){
             margin-bottom: 20px;
@@ -120,7 +124,7 @@
 
     .tile-label {
         grid-area: label;
-        font-size:16px;
+
         cursor:pointer;
         .label {
             border-radius: 40px;
@@ -128,6 +132,8 @@
             margin-right: 10px;
             color: $brand1;
             text-transform: capitalize;
+            font-size:13px;
+            line-height:1em;
             &:hover, &:focus {
                 background-color:$brand1;
                 color:$brand3;
@@ -160,13 +166,18 @@
             .tag-nav-headline h2{
                 text-align:center;
                 margin:0 auto 40px;
-            /*     font-size:30px;  */
+                text-transform:capitalize;
+                @media(min-width:$desktop) {
+                    font-size:60px;
+                    
+                }
             } 
             
             
             .tag-nav-listing {
                 max-width:90%;
                 margin:0 auto 40px;
+                text-align:center;
                 .tag-nav-item {
                     display: inline-block;
                     border-radius: 3px;
@@ -180,7 +191,12 @@
                     font-weight:100;
                     color:#fff;
                     outline:initial;
-     
+                    text-transform:capitalize;
+                 
+                }
+                @media(max-width:$tablet) { 
+                    margin:0 auto 10px;
+                    .tag-nav-item { font-size:14px; margin: 2px; }
                 }
             }
             .tag-nav-item:active, .tag-nav-item:focus {

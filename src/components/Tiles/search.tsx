@@ -42,16 +42,92 @@ const Tile = ({
 </li>);
 };
 
+/* ########################## */
+/* ##### TILE LISTING ##### */
+/* ########################## */
+
+/* ########################## */
+/* ##### Filter Nav ##### */
+/* ########################## */
+
+/* ########################## */
+/* ##### FLOW TABLE ##### */
+/* ########################## */
+// const tileLoop = ({
+
+// }) => {
+
+// }
+
+/* ########################## */
+/* ##### EVENTS ##### */
+/* ########################## */
+
+/* ########################## */
+/* ##### MAIN APP (TIED EVERYTHING NICELY) ##### */
+/* ########################## */
+
+// const TagsList = ({tags, onTagDelete, hashtag}) => {
+//   const list = tags.map((tag, index) => (
+//     <Tag
+//       name={tag}
+//       onDelete={onTagDelete}
+//       index={index}
+//       hashtag={hashtag} />
+//   ));
+//   return (
+//     <ul name="tagsList" className="tagsList">
+//       {list}
+//     </ul>
+//   );
+// };
+
+// const tileListing = (props) => {
+//   return props.tile.map((value, i) => <Tile
+//       key={i}
+//       icon={value.icon}
+//       image={value.image}
+//       title={value.title}
+//       description={value.description}
+//       tags={value.tags}
+//       liveUrl={value.liveUrl}
+//       learnUrl={value.learnUrl}
+//       order={value.order}
+//     />,
+//     );
+// };
+
 class Tiles extends React.Component<any, any> {
     constructor(props: any) {
       super(props);
       this.state = {
           items: [],
+          results: [],
           visibility: 'Boomi Solutions',
       };
 
       this.tileFilterAction = this.tileFilterAction.bind(this);
       this.renderTiles = this.renderTiles.bind(this);
+      this.handleSearch = this.handleSearch.bind(this);
+
+    }
+
+    handleSearch = (event) => {
+      const searchQuery = event.target.value.toLowerCase();
+      const items = this.state.items.filter(function(el) {
+        if (searchQuery == null) {
+          return this.state.items;
+          console.log('empty');
+        } else {
+          const searchValue = el.title.toLowerCase();
+          return searchValue.indexOf(searchQuery) != -1;
+        }
+
+      });
+      this.setState({
+        items,
+      });
+      // console.log(results);
     }
 
     tileFilterAction = (event) => {
@@ -147,6 +223,7 @@ class Tiles extends React.Component<any, any> {
       return (
             <div className="wrapper">
                   {tagNav}
+                  <input type="text" className="search-field" onChange={this.handleSearch}/>
                   <div className="tile-wrapper">
                     <ul className="tile-listing">
 

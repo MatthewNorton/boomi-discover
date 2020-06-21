@@ -1,11 +1,6 @@
 declare var manywho: any;
 
 import * as React from 'react';
-import { registerItems } from '../../interfaces/services/component';
-// import someColor from '../Tags/Tag2';
-// // import SomeChildComponent; '../Tags/Tag2';
-// import Tags from '../Tags/Tags';
-// import Tile from './Tile';
 
 /* ########################## */
 /* ##### TILE ##### */
@@ -36,59 +31,36 @@ const Tile = ({
       }
       <div className="tile-label">
         {tagged.map((tag) => <span data-value={tag} onClick={click} className="label label-warning">{tag}</span>)}
-        {/* {props.tags} */}
       </div>
   </div>
 </li>);
 };
-
 class Tiles extends React.Component<any, any> {
     constructor(props: any) {
       super(props);
       this.state = {
           items: [],
           visibility: 'Boomi Solutions',
+          filter: '',
       };
 
       this.tileFilterAction = this.tileFilterAction.bind(this);
       this.renderTiles = this.renderTiles.bind(this);
+      this.urlParam = this.urlParam.bind(this);
     }
+    componentDidMount() {
+      this.tileLoop();
+      this.urlParam();
 
-    tileFilterAction = (event) => {
-
-      this.setState({
-        visibility: event.target.getAttribute('data-value'),
-      });
-    }
-
-    renderTiles = () => {
-      return this.state.items.filter((item) => {
-          return (
-            // this.state.visibility !== 'all') ? (item.tags.toLowerCase() === this.state.visibility.toLowerCase()) : true;
-            this.state.visibility !== 'Boomi Solutions') ? (item.tags.split(',').join(',').indexOf(this.state.visibility, -1) > -1) : true;
-        }).sort((a, b) => a.order - b.order).map((value, i) => {
-          return (<Tile
-            key={i}
-            icon={value.icon}
-            image={value.image}
-            title={value.title}
-            description={value.description}
-            tagged={value.tags.split(',')}
-            liveUrl={value.liveUrl}
-            learnUrl={value.learnUrl}
-            order={value.order}
-            click={this.tileFilterAction}
-          />);
-          });
     }
     tileLoop = () => {
+
       const modelAll = manywho.model.getComponents(this.props.flowKey);
       const model = manywho.model.getComponent(this.props.id, this.props.flowKey);
       const columns = manywho.component.getDisplayColumns(model.columns);
       const dataTable = model.objectData;
 
       dataTable.forEach((result: any) => {
-
           const icon = result.properties.find((property: any) => property.typeElementPropertyId === columns[0].typeElementPropertyId);
           const tags = result.properties.find((property: any) => property.typeElementPropertyId === columns[1].typeElementPropertyId);
           const liveUrl = result.properties.find((property: any) => property.typeElementPropertyId === columns[2].typeElementPropertyId);
@@ -109,24 +81,61 @@ class Tiles extends React.Component<any, any> {
             order: order.contentValue,
           });
       });
-    }
-
-    componentDidMount() {
-      this.tileLoop();
-    }
-
-    render() {
-
-      // Fixes and null values
+            // Fixes and null values
       this.state.items.forEach(function(o) {
-          Object.keys(o).forEach(function(k) {
-              if (o[k] === null) {
-                  o[k] = '';
-              }
+              Object.keys(o).forEach(function(k) {
+                  if (o[k] === null) {
+                      o[k] = '';
+                  }
+              });
           });
-      });
 
-      // List of Tags
+  }
+    urlParam = () => {
+      const params = new URLSearchParams(document.location.search.substring(1));
+      const param = params.get('f'); // is the string "Jonathan"
+      if (param === null) {
+        this.setState({
+          visibility: 'Boomi Solutions',
+        });
+      } else {
+        this.setState({
+          visibility: param,
+        });
+      }
+
+    }
+
+    tileFilterAction = (event) => {
+      this.setState({
+        visibility: event.target.getAttribute('data-value'),
+      });
+    }
+
+    renderTiles = (
+
+    ) => {
+      return this.state.items.filter((item) => {
+          return (
+            this.state.visibility !== 'Boomi Solutions') ? (item.tags.toLowerCase().split(',').join(',').indexOf(this.state.visibility.toLowerCase(), -1) > -1) : true;
+        }).sort((a, b) => a.order - b.order).map((value, i) => {
+          return (<Tile
+            key={i}
+            icon={value.icon}
+            image={value.image}
+            title={value.title}
+            description={value.description}
+            tagged={value.tags.split(',')}
+            liveUrl={value.liveUrl}
+            learnUrl={value.learnUrl}
+            order={value.order}
+            click={this.tileFilterAction}
+          />);
+          });
+    }
+
+    tagNav = () => {
+            // List of Tags
       // const addAll = tagObj.push('All');
       // Seperate strings into invidiaul tags arrays
       const tagSplit = this.state.items.map((x) => (x.tags.split(',')));
@@ -134,24 +143,26 @@ class Tiles extends React.Component<any, any> {
       const tagArray = [].concat(...tagSplit);
       // Remove Duplicates
       const tags = [...new Set(tagArray)];
-      const tagNav = <div className="tag-nav-wrapper">
-          <div className="tag-nav-headline">
-            <h2>{this.state.visibility}</h2>
-          </div>
-          <div className="tag-nav-listing">
-            <button className="tag-nav-item" data-value="Boomi Solutions" onClick={this.tileFilterAction}>All</button>
-            {tags.sort().map((tag, i) => <button className="tag-nav-item" data-value={tag} onClick={this.tileFilterAction}>{tag}</button>)}
-          </div>
-
-        </div>;
+      return (<div className="tag-nav-wrapper">
+        <div className="tag-nav-headline">
+          <h2>{this.state.visibility}</h2>
+        </div>
+        <div className="tag-nav-listing">
+          <ul>
+            <li className="tag-nav-item"><button data-value="Boomi Solutions" onClick={this.tileFilterAction}>All</button></li>
+            {tags.sort().map((tag, i) => <li key={i} className="tag-nav-item"><button className="" data-value={tag.toLowerCase()} onClick={this.tileFilterAction}>{tag}</button></li>)}
+          </ul>
+        </div>
+      </div>);
+    }
+    render() {
+      console.log('Filtering for ➡️', this.state.visibility);
       return (
             <div className="wrapper">
-                  {tagNav}
+                  {this.tagNav()}
                   <div className="tile-wrapper">
                     <ul className="tile-listing">
-
-                        {this.renderTiles()}
-
+                      {this.renderTiles()}
                     </ul>
                   </div>
             </div>
@@ -159,6 +170,44 @@ class Tiles extends React.Component<any, any> {
         );
     }
 }
+
+// class MediaApp extends React.Component<any, any> {
+
+  /* UI ______________
+      - Tags
+      - Tag
+    - Tiles
+      - Tile
+  */
+// }
+
+// class ImageWithStatusText extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { imageStatus: 'loading' };
+//   }
+
+//   handleImageLoaded() {
+//     this.setState({ imageStatus: 'loaded' });
+//   }
+
+//   handleImageErrored() {
+//     this.setState({ imageStatus: 'failed to load' });
+//   }
+
+//   render() {
+//     return (
+//       <div>
+//         <img
+//           src={this.props.imageUrl}
+//           onLoad={this.handleImageLoaded.bind(this)}
+//           onError={this.handleImageErrored.bind(this)}
+//         />
+//         {this.state.imageStatus}
+//       </div>
+//     );
+//   }
+// }
 
 manywho.component.register('tile-component', Tiles);
 export default Tiles;

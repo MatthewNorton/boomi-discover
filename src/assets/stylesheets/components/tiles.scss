@@ -201,3 +201,6 @@
 .tile-item .tile-label .label:empty {
     display: none;
 }
+
+.tile-learn [data-name]:before { content: "Buy Now";}
+.tile-live  [data-name]:before { content: "Live Example"}

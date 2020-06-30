@@ -23,10 +23,10 @@ const Tile = ({
       <div className="tile-icon"><img src={icon} alt={title} /></div>
       <div className="tile-title"><h4>{title}</h4></div>
       <div className="tile-description"><p>{description}</p></div>
-      <div className="tile-learn"><a className="btn btn-success" href={learnUrl} target="_blank">Learn More</a></div>
+      <div className="tile-learn"><a className="btn btn-success" data-name="Learn More" href={learnUrl} target="_blank"></a></div>
       {liveUrl.length > 0  &&
           <div className="tile-live">
-              <a href={liveUrl} className="btn btn-success ghost" target="_blank">Live Example</a>
+              <a href={liveUrl} data-name="Live Example" className="btn btn-success ghost" target="_blank"></a>
           </div>
       }
       <div className="tile-label">
@@ -90,7 +90,7 @@ class Tiles extends React.Component<any, any> {
               });
           });
 
-  }
+}
     urlParam = () => {
       const params = new URLSearchParams(document.location.search.substring(1));
       const param = params.get('f'); // is the string "Jonathan"
@@ -105,15 +105,12 @@ class Tiles extends React.Component<any, any> {
       }
 
     }
-
     tileFilterAction = (event) => {
       this.setState({
         visibility: event.target.getAttribute('data-value'),
       });
     }
-
     renderTiles = (
-
     ) => {
       return this.state.items.filter((item) => {
           return (
@@ -133,7 +130,6 @@ class Tiles extends React.Component<any, any> {
           />);
           });
     }
-
     tagNav = () => {
             // List of Tags
       // const addAll = tagObj.push('All');

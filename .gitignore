@@ -13,3 +13,4 @@ package-lock.json
 .vscode
 ngrok.exe
 src/components/Tiles/Tiles copy.tsx
+README.md

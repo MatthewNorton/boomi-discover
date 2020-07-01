@@ -114,8 +114,7 @@
     "filenames": {
       "js": "boomi-solutions.js",
       "css": "boomi-solutions.css"
-    },
-    "templateScripts": "https://files-manywho-com.s3.amazonaws.com/833169c7-3807-43da-b087-0995e4eb67c4/fonts.css"
+    }
   },
   "peerDependencies": {},
   "bundledDependencies": [],

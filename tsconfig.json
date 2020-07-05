@@ -6,13 +6,15 @@
         "module": "commonjs",
         "target": "es5",
         "jsx": "react",
+        "allowJs": true, // allow a partial TypeScript and JavaScript codebase
         "lib": ["dom","es7"],
         "skipLibCheck": true,
         "downlevelIteration": true,
         "typeRoots": [
             "./node_modules/@types",
             "./types/",
-        ]
+        ],
+        "types": ["node"]
 
     },
     "include": [

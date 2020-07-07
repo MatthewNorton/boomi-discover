@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 /* ########################## */
 /* ##### INVIDIUAL TILE Template ##### */
 /* ########################## */
@@ -29,9 +28,11 @@ const Tile = ({
                 <div className="tile-description">
                     <p>{description}</p>
                 </div>
+                {/* Learn Button */}
+
                 <div className="tile-learn">
                     <a
-                        className="btn btn-success"
+                        className="btn btn-primary"
                         data-name="Learn More"
                         href={learnUrl}
                         target="_blank"
@@ -42,11 +43,12 @@ const Tile = ({
                         <a
                             href={liveUrl}
                             data-name="Live Example"
-                            className="btn btn-success ghost"
+                            className="btn btn-primary ghost"
                             target="_blank"
                         ></a>
                     </div>
                 )}
+
                 <div className="tile-label">
                     {tagged.map((tag) => (
                         <span

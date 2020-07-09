@@ -1,3 +1,13 @@
+@mixin tile-layout {
+    grid-template-areas:
+        'tileicon title title'
+        'description description description'
+        'live . learn'
+        'label label label';
+}
+
+
+
 .tile-wrapper {
     // padding:0 40px;
     margin-top: 120px;
@@ -27,9 +37,6 @@
     width: 300px;
     max-width: 100%;
     transition: opacity 0.1s;
-    // @supports (display:grid){
-    //     max-width:100%;
-    // }
     margin: 0 auto;
     &:hover,
     &:focus {
@@ -77,11 +84,7 @@
             grid-gap: 10px;
             grid-template-columns: 40px repeat(2, 1fr) auto;
             grid-template-rows: 0.5fr 0.5fr 0.7fr auto auto;
-            grid-template-areas:
-                'tileicon title title'
-                'description description description'
-                'learn . live'
-                'label label label';
+            @include tile-layout;
         }
     }
     .tile-icon {

@@ -4,11 +4,11 @@
         "sourceMap": true,
         "noImplicitAny": false,
         "module": "commonjs",
-        "target": "es6",
+        "target": "esnext",
         "jsx": "react",
         "esModuleInterop": true,
         "allowJs": true, // allow a partial TypeScript and JavaScript codebase
-        "lib": ["dom","es7"],
+        "lib": ["dom","es7", "esnext"],
         "skipLibCheck": true,
         "downlevelIteration": true,
         "allowSyntheticDefaultImports": true,

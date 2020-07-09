@@ -28,26 +28,24 @@ const Tile = ({
                 <div className="tile-description">
                     <p>{description}</p>
                 </div>
-                {/* Learn Button */}
-
-                <div className="tile-learn">
-                    <a
-                        className="btn btn-primary"
-                        data-name="Learn More"
-                        href={learnUrl}
-                        target="_blank"
-                    ></a>
-                </div>
                 {liveUrl.length > 0 && (
                     <div className="tile-live">
                         <a
                             href={liveUrl}
                             data-name="Live Example"
-                            className="btn btn-primary ghost"
+                            className="btn btn-primary"
                             target="_blank"
                         ></a>
                     </div>
                 )}
+                <div className="tile-learn">
+                    <a
+                        className="btn btn-primary ghost"
+                        data-name="Learn More"
+                        href={learnUrl}
+                        target="_blank"
+                    ></a>
+                </div>
 
                 <div className="tile-label">
                     {tagged.map((tag) => (

@@ -1,21 +1,19 @@
 declare var manywho: any;
 
 /* Workflow Component Structure
- 1. Tile Data [Where ALL the tile data is harnessed & converted from a flow table]
+
  2. Tile Nav [Where the tag nav module lives]
  3. Tile Item [Where the individual tile module lives]
  4. Tile Wrapper [Is where all the modules come together form the tile component]
 
- [Tile Data] =>
  [Tile Item] & [Tag Nav] =>
  [Tile Wrapper]
 
 */
 
 import * as React from 'react';
-import TagNav from './TagNav';
-import TileData from './TileData';
-import Tile from './TileItem';
+// import TagNav from './TagNav/TagNav';
+import Tile from './TileItem/TileItem';
 
 /* ########################## */
 /* ##### TILES COMPONENT  ##### */
@@ -38,11 +36,8 @@ class TileWrapper extends React.Component<any, any> {
     --------------------------------*/
 
     componentDidMount() {
-        // this.flowData();
+        this.flowData();
         this.tagParam();
-        <TileData />;
-        // test;
-        // console.log(test);
     }
     flowData = () => {
         const modelAll = manywho.model.getComponents(this.props.flowKey);
@@ -188,7 +183,6 @@ class TileWrapper extends React.Component<any, any> {
                     liveUrl={value.liveUrl}
                     learnUrl={value.learnUrl}
                     order={value.order}
-                    click={this.tileFilterAction}
                 />
             );
         });
@@ -200,12 +194,12 @@ class TileWrapper extends React.Component<any, any> {
         return (
             <div className="wrapper">
 
-                <TagNav
+                {/* <TagNav
                     items={this.state.items}
                     buttonAction={this.tileFilterAction}
                     activeClass="test"
 
-                />
+                /> */}
                 <div className="tile-wrapper">
                     <ul className="tile-listing">{this.tileFilteredList()}</ul>
                 </div>

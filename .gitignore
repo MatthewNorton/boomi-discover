@@ -13,3 +13,6 @@ package-lock.json
 .vscode
 ngrok.exe
 src/components/Tiles/Tiles copy.tsx
+src/components/TestComponent/*.tsx
+src/components/TestComponent/TestTileData.tsx
+src/components/TestComponent/TestTileWrapper.tsx

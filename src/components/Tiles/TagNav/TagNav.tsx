@@ -32,7 +32,6 @@ const TagNav = ({
                     {tags.sort().map((tag, i) => (
                         <li key={i} className="tag-nav-item">
                             <button key={i}
-                                // className={activeClass}
                                 data-value={tag.toLowerCase()}
                                 onClick={buttonAction}
                                 className={activeClass}

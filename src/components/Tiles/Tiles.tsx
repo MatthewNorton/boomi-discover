@@ -12,7 +12,7 @@ declare var manywho: any;
 */
 
 import * as React from 'react';
-// import TagNav from './TagNav/TagNav';
+// import TagNav from './TagNav/TagNav'; // NOT USED IN VERSION 1.
 import Tile from './TileItem/TileItem';
 
 /* ########################## */

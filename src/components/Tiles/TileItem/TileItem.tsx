@@ -11,7 +11,6 @@ const Tile = ({
     description,
     image,
     order,
-    click,
 }) => {
     return (
         <li key={tagged} className="tile-item">
@@ -29,29 +28,29 @@ const Tile = ({
                     <p>{description}</p>
                 </div>
                 {liveUrl.length > 0 && (
-                    <div className="tile-live">
+                    <div className="tile-example">
                         <a
                             href={liveUrl}
                             data-name="Live Example"
-                            className="btn btn-primary"
+                            className="btn btn-success ghost"
                             target="_blank"
-                        ></a>
+                        >Live Example</a>
                     </div>
                 )}
-                <div className="tile-learn">
+                <div className="tile-learnmore">
                     <a
-                        className="btn btn-primary ghost"
+                        className="btn btn-success"
                         data-name="Learn More"
                         href={learnUrl}
                         target="_blank"
-                    ></a>
+                    >Learn More</a>
                 </div>
 
                 <div className="tile-label">
                     {tagged.map((tag) => (
                         <span
                             data-value={tag}
-                            onClick={click}
+
                             className="label label-warning"
                         >
                             {tag}

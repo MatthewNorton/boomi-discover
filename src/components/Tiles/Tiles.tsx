@@ -193,13 +193,6 @@ class TileWrapper extends React.Component<any, any> {
     render() {
         return (
             <div className="wrapper">
-
-                {/* <TagNav
-                    items={this.state.items}
-                    buttonAction={this.tileFilterAction}
-                    activeClass="test"
-
-                /> */}
                 <div className="tile-wrapper">
                     <ul className="tile-listing">{this.tileFilteredList()}</ul>
                 </div>

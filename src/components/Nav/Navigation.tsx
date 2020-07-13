@@ -35,8 +35,7 @@ class Navigation extends React.Component<any, any> {
 
     }
     render() {
-
-        return (
+return (
           <div className="wrapper wrapper-nav">
             <div className="topnav">
               <ul>

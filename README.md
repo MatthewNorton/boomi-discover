@@ -12,3 +12,4 @@ A series of custom components that make up [Boomi Thrive](https://www.boomi.com/
 ### SCSS Files
 `assets > components`
 
+ 

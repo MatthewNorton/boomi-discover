@@ -12,7 +12,7 @@ declare var manywho: any;
 */
 
 import * as React from 'react';
-// import TagNav from './TagNav/TagNav';
+import TagNav from './TagNav/TagNav';
 import Tile from './TileItem/TileItem';
 
 /* ########################## */
@@ -183,6 +183,7 @@ class TileWrapper extends React.Component<any, any> {
                     liveUrl={value.liveUrl}
                     learnUrl={value.learnUrl}
                     order={value.order}
+                    click={value.click}
                 />
             );
         });
@@ -194,12 +195,12 @@ class TileWrapper extends React.Component<any, any> {
         return (
             <div className="wrapper">
 
-                {/* <TagNav
+                <TagNav
                     items={this.state.items}
                     buttonAction={this.tileFilterAction}
                     activeClass="test"
 
-                /> */}
+                />
                 <div className="tile-wrapper">
                     <ul className="tile-listing">{this.tileFilteredList()}</ul>
                 </div>

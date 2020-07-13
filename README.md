@@ -1,11 +1,23 @@
+# README Boilerplate
+
+A series of custom components that make up [Boomi Thrive](https://www.boomi.com/thrive)
+
+## File Structure
 
 
-#Version 2 Features : 
-1. Tags (alphabetical order)
-2. Clickable Filtering and tag mechanism
-3. Clickable tags from the tiles themselves
-4. New clone tooling added
-5. Admin for adding & removing tiles. 
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [To Do](#todo)
+- [Disclaimer](#disclaimer)
+
+## Installation
+
+## Usage
+
+## Contributing
 
 
-
+#Disclaimer]

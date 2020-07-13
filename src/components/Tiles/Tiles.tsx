@@ -1,101 +1,47 @@
 declare var manywho: any;
 
-import * as React from 'react';
+/* Workflow Component Structure
 
-/* ########################## */
-/* ##### INVIDIUAL TILE Template ##### */
-/* ########################## */
-const Tile = ({
-    icon,
-    tagged,
-    liveUrl,
-    learnUrl,
-    title,
-    description,
-    image,
-    order,
-    click,
-}) => {
-    return (
-        <li key={tagged} className="tile-item">
-            <div className="tile-img">
-                <img src={image} alt={title} />
-            </div>
-            <div className="tile-content" data-order={order}>
-                <div className="tile-icon">
-                    <img src={icon} alt={title} />
-                </div>
-                <div className="tile-title">
-                    <h4>{title}</h4>
-                </div>
-                <div className="tile-description">
-                    <p>{description}</p>
-                </div>
-                <div className="tile-learn">
-                    <a
-                        className="btn btn-success"
-                        data-name="Learn More"
-                        href={learnUrl}
-                        target="_blank"
-                    ></a>
-                </div>
-                {liveUrl.length > 0 && (
-                    <div className="tile-live">
-                        <a
-                            href={liveUrl}
-                            data-name="Live Example"
-                            className="btn btn-success ghost"
-                            target="_blank"
-                        ></a>
-                    </div>
-                )}
-                <div className="tile-label">
-                    {tagged.map((tag) => (
-                        <span
-                            data-value={tag}
-                            onClick={click}
-                            className="label label-warning"
-                        >
-                            {tag}
-                        </span>
-                    ))}
-                </div>
-            </div>
-        </li>
-    );
-};
+ 2. Tile Nav [Where the tag nav module lives]
+ 3. Tile Item [Where the individual tile module lives]
+ 4. Tile Wrapper [Is where all the modules come together form the tile component]
+
+ [Tile Item] & [Tag Nav] =>
+ [Tile Wrapper]
+
+*/
+
+import * as React from 'react';
+import TagNav from './TagNav/TagNav';
+import Tile from './TileItem/TileItem';
 
 /* ########################## */
 /* ##### TILES COMPONENT  ##### */
 /* ########################## */
 
 class Tiles extends React.Component<any, any> {
+
     constructor(props: any) {
         super(props);
         this.state = {
             items: [],
             visibility: 'Boomi Solutions',
-            filter: '',
         };
-
         this.tileFilterAction = this.tileFilterAction.bind(this);
-        this.tileList = this.tileList.bind(this);
+        this.tileFilteredList = this.tileFilteredList.bind(this);
         this.tagParam = this.tagParam.bind(this);
     }
     /* ----------------------------
-     Wait to apply functions after runtime.
+     Wait to load data after runtime.
     --------------------------------*/
+
     componentDidMount() {
-        this.tileLoop();
+        this.flowData();
         this.tagParam();
     }
-
-    /* ----------------------------
-      Loops through the table of data
-    --------------------------------*/
-
-    tileLoop = () => {
+    flowData = () => {
         const modelAll = manywho.model.getComponents(this.props.flowKey);
+        const items = this.state.items;
         const model = manywho.model.getComponent(
             this.props.id,
             this.props.flowKey,
@@ -144,10 +90,10 @@ class Tiles extends React.Component<any, any> {
                     property.typeElementPropertyId ===
                     columns[7].typeElementPropertyId,
             );
-          /* ----------------------------
+            /* ----------------------------
           Adds looped data to state array.
           --------------------------------*/
-            this.state.items.push({
+            items.push({
                 icon: icon.contentValue,
                 tags: tags.contentValue,
                 liveUrl: liveUrl.contentValue,
@@ -158,12 +104,18 @@ class Tiles extends React.Component<any, any> {
                 order: order.contentValue,
             });
         });
+        // items.fetchPosts().then((response) => {
+        //     this.setState({
+        //       posts: response.posts,
+        //     });
+        //   });
 
-    /* ----------------------------
+        // console.log(this.state.posts);
+        /* ----------------------------
       Error cleanup by replacing
       null values with an empty string.
     --------------------------------*/
-        this.state.items.forEach(function(o) {
+        items.forEach(function(o) {
             Object.keys(o).forEach(function(k) {
                 if (o[k] === null) {
                     o[k] = '';
@@ -179,7 +131,7 @@ class Tiles extends React.Component<any, any> {
         const params = new URLSearchParams(
             document.location.search.substring(1),
         );
-        const param = params.get('f'); // is the string "Jonathan"
+        const param = params.get('f'); // is the string "Customer Experience"
         if (param === null) {
             this.setState({
                 visibility: 'Boomi Solutions',
@@ -190,84 +142,70 @@ class Tiles extends React.Component<any, any> {
             });
         }
     }
+
+    /* ----------------------------
+    ACTION: Click state Creating a clickable filter. Clicking a tag will filter the tiles.
+
+    --------------------------------*/
     tileFilterAction = (event) => {
         this.setState({
             visibility: event.target.getAttribute('data-value'),
         });
+
     }
-    tileList = () => {
-        return this.state.items
-            .filter((item) => {
-                return this.state.visibility !== 'Boomi Solutions'
-                    ? item.tags
-                          .toLowerCase()
-                          .split(',')
-                          .join(',')
-                          .indexOf(this.state.visibility.toLowerCase(), -1) > -1
-                    : true;
-            })
-            .sort((a, b) => a.order - b.order)
-            .map((value, i) => {
-                return (
-                    <Tile
-                        key={i}
-                        icon={value.icon}
-                        image={value.image}
-                        title={value.title}
-                        description={value.description}
-                        tagged={value.tags.split(',')}
-                        liveUrl={value.liveUrl}
-                        learnUrl={value.learnUrl}
-                        order={value.order}
-                        click={this.tileFilterAction}
-                    />
-                );
-            });
+
+    /* ----------------------------
+    FILTEREDLIST: Click state Creating a clickable filter. Clicking a tag will filter the tiles.
+
+    --------------------------------*/
+    tileFilteredList = () => {
+        const visibility = this.state.visibility;
+
+        const items = this.state.items;
+
+        const filterItems = items.filter((item) => {
+            return visibility !== 'Boomi Solutions'
+                ? item.tags
+                      .toLowerCase()
+                      .split(',')
+                      .join(',')
+                      .indexOf(visibility.toLowerCase(), -1) > -1
+                : true;
+        });
+
+        const sortItems = filterItems.sort((a, b) => a.order - b.order);
+        const mapItems  = filterItems.map((value, i) => {
+            return (
+                <Tile
+                    key={i}
+                    icon={value.icon}
+                    image={value.image}
+                    title={value.title}
+                    description={value.description}
+                    tagged={value.tags.split(',')}
+                    liveUrl={value.liveUrl}
+                    learnUrl={value.learnUrl}
+                    order={value.order}
+                    click={value.click}
+                />
+            );
+        });
+
+        return mapItems;
     }
-    tagNav = () => {
-        // List of Tags
-        const tagSplit = this.state.items.map((x) => x.tags.split(','));
-        // Merge Tags & sort
-        const tagArray = [].concat(...tagSplit);
-        // Remove Duplicates
-        const tags = [...new Set(tagArray)];
-        return (
-            <div className="tag-nav-wrapper">
-                <div className="tag-nav-headline">
-                    <h2>{this.state.visibility}</h2>
-                </div>
-                <div className="tag-nav-listing">
-                    <ul>
-                        <li className="tag-nav-item">
-                            <button
-                                data-value="Boomi Solutions"
-                                onClick={this.tileFilterAction}
-                            >
-                                All
-                            </button>
-                        </li>
-                        {tags.sort().map((tag, i) => (
-                            <li key={i} className="tag-nav-item">
-                                <button
-                                    className=""
-                                    data-value={tag.toLowerCase()}
-                                    onClick={this.tileFilterAction}
-                                >
-                                    {tag}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-        );
-    }
+
     render() {
         return (
             <div className="wrapper">
-                {this.tagNav()}
+
+                <TagNav
+                    items={this.state.items}
+                    buttonAction={this.tileFilterAction}
+                    activeClass="test"
+
+                />
                 <div className="tile-wrapper">
-                    <ul className="tile-listing">{this.tileList()}</ul>
+                    <ul className="tile-listing">{this.tileFilteredList()}</ul>
                 </div>
             </div>
         );

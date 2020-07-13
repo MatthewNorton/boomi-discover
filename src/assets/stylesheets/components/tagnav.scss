@@ -1,0 +1,59 @@
+
+// TAGS ==================================
+
+.tag-nav-wrapper {
+    @extend .tile-wrapper;
+}
+
+.tag-nav-headline h2 {
+    text-align: center;
+    margin: 0 auto 40px;
+    text-transform: capitalize;
+    color:$brand3; 
+    @media (min-width: $desktop) {
+        font-size: 60px;
+    }
+}
+
+.tag-nav-listing {
+    max-width: 90%;
+    margin: 0 auto 40px;
+    text-align: center;
+    @media (max-width: $tablet) {
+        margin: 0 auto 10px;
+    }
+}
+.tag-nav-item {
+    display: inline-block;
+    @media (max-width: $tablet) {
+        font-size: 14px;
+        margin: 2px;
+    }
+    button {
+        border-radius: 3px;
+        padding: 10px 20px;
+        border-radius: 0;
+        background: $brand1;
+        
+        font-weight: 600;
+        margin: 0.25em 0.1em;
+        border-width: 0;
+        font-weight: 100;
+        color: #fff;
+        outline: initial;
+        text-transform: capitalize;
+        &:active, &:focus, &:hover {
+            background: $brand3;
+            color: $brand1;
+        }
+        &.active {
+            background:$brand1;
+            color:#ffffff;
+        }
+    }
+}
+
+.tag-nav-item button:empty,
+.tile-item .tile-label .label:empty {
+    display: none;
+}

@@ -4,20 +4,11 @@ A series of custom components that make up [Boomi Thrive](https://www.boomi.com/
 
 ## File Structure
 
+### TSX Files
+`src > components`
+1. Navigation
+2. Add the ability to delete a tile. 
 
-## Table of Contents
+### SCSS Files
+`assets > components`
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [To Do](#todo)
-- [Disclaimer](#disclaimer)
-
-## Installation
-
-## Usage
-
-## Contributing
-
-
-#Disclaimer]

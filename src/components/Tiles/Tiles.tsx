@@ -19,7 +19,7 @@ import Tile from './TileItem/TileItem';
 /* ##### TILES COMPONENT  ##### */
 /* ########################## */
 
-class TileWrapper extends React.Component<any, any> {
+class Tiles extends React.Component<any, any> {
 
     constructor(props: any) {
         super(props);
@@ -160,7 +160,9 @@ class TileWrapper extends React.Component<any, any> {
     --------------------------------*/
     tileFilteredList = () => {
         const visibility = this.state.visibility;
+
         const items = this.state.items;
+
         const filterItems = items.filter((item) => {
             return visibility !== 'Boomi Solutions'
                 ? item.tags
@@ -170,6 +172,7 @@ class TileWrapper extends React.Component<any, any> {
                       .indexOf(visibility.toLowerCase(), -1) > -1
                 : true;
         });
+
         const sortItems = filterItems.sort((a, b) => a.order - b.order);
         const mapItems  = filterItems.map((value, i) => {
             return (
@@ -209,5 +212,5 @@ class TileWrapper extends React.Component<any, any> {
     }
 }
 
-manywho.component.register('tile-component', TileWrapper);
-export default TileWrapper;
+manywho.component.register('tile-component', Tiles);
+export default Tiles;

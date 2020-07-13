@@ -22,7 +22,7 @@ const TagNav = ({
                 <ul>
                     <li className="tag-nav-item">
                         <button
-                            data-value="Boomi Solutions"
+                            data-value="All" // All by default means it will display ALL the tiles
                             onClick={buttonAction}
                             className={activeClass}
                         >

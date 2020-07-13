@@ -24,17 +24,18 @@ class Tiles extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            items: [],
-            visibility: 'Boomi Solutions',
+            items: [], /* The array flowData is placed in */
+            defaultTag: 'All',
         };
-        this.tileFilterAction = this.tileFilterAction.bind(this);
-        this.tileFilteredList = this.tileFilteredList.bind(this);
+        this.tileFilterAction = this.tileFilterAction.bind(this); // filter ONCLICK action
+        this.tileFilteredList = this.tileFilteredList.bind(this); // the filterList after the onclick takes places
         this.tagParam = this.tagParam.bind(this);
     }
     /* ----------------------------
      Wait to load data after runtime.
     --------------------------------*/
 
+    /* Loads the Flow data & &f= param functionality after run time */
     componentDidMount() {
         this.flowData();
         this.tagParam();
@@ -104,13 +105,6 @@ class Tiles extends React.Component<any, any> {
                 order: order.contentValue,
             });
         });
-        // items.fetchPosts().then((response) => {
-        //     this.setState({
-        //       posts: response.posts,
-        //     });
-        //   });
-
-        // console.log(this.state.posts);
         /* ----------------------------
       Error cleanup by replacing
       null values with an empty string.
@@ -123,25 +117,6 @@ class Tiles extends React.Component<any, any> {
             });
         });
     }
-    /* ----------------------------
-      function that is used for &f= url parameter. Example:
-
-    --------------------------------*/
-    tagParam = () => {
-        const params = new URLSearchParams(
-            document.location.search.substring(1),
-        );
-        const param = params.get('f'); // is the string "Customer Experience"
-        if (param === null) {
-            this.setState({
-                visibility: 'Boomi Solutions',
-            });
-        } else {
-            this.setState({
-                visibility: param,
-            });
-        }
-    }
 
     /* ----------------------------
     ACTION: Click state Creating a clickable filter. Clicking a tag will filter the tiles.
@@ -149,7 +124,7 @@ class Tiles extends React.Component<any, any> {
     --------------------------------*/
     tileFilterAction = (event) => {
         this.setState({
-            visibility: event.target.getAttribute('data-value'),
+            defaultTag: event.target.getAttribute('data-value'),
         });
 
     }
@@ -159,17 +134,19 @@ class Tiles extends React.Component<any, any> {
 
     --------------------------------*/
     tileFilteredList = () => {
-        const visibility = this.state.visibility;
+        const defaultTag = this.state.defaultTag;
+        const items = this.state.items; // array
 
-        const items = this.state.items;
+    /* Filter will search through the array based on defaultTag. IE: if data-value === */
 
         const filterItems = items.filter((item) => {
-            return visibility !== 'Boomi Solutions'
+            // If does NOT = all, then filter based on the data-value.
+            return defaultTag !== 'All'
                 ? item.tags
                       .toLowerCase()
                       .split(',')
                       .join(',')
-                      .indexOf(visibility.toLowerCase(), -1) > -1
+                      .indexOf(defaultTag.toLowerCase(), -1) > -1
                 : true;
         });
 
@@ -193,12 +170,31 @@ class Tiles extends React.Component<any, any> {
 
         return mapItems;
     }
+    /* ----------------------------
+      function that is used for &f= url parameter. Example:
 
+    --------------------------------*/
+    tagParam = () => {
+        const params = new URLSearchParams(
+            document.location.search.substring(1),
+        );
+        const param = params.get('f'); //        &f=Retail will filter retail
+        if (param === null) {
+            this.setState({
+                defaultTag: 'All',
+            });
+        } else {
+            this.setState({
+                defaultTag: param,
+            });
+        }
+    }
     render() {
         return (
             <div className="wrapper">
 
                 <TagNav
+                    // tag={this.state.defaultTag}
                     items={this.state.items}
                     buttonAction={this.tileFilterAction}
                     activeClass="test"

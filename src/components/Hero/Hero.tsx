@@ -59,7 +59,7 @@ class Hero extends React.Component<any, any> {
                    <div key={index} className="hero-content">
                       <h1 className="hero-title">{value.title}</h1>
                       <h3 className="hero-description">{value.description}</h3>
-                      <a href={value.buttonHref} target={value.buttonTarget} className="btn btn-primary">{value.buttonTitle}</a>
+                      <a href={value.buttonHref} title={value.buttonTitle} target={value.buttonTarget} className="btn btn-primary">{value.buttonTitle}</a>
                     </div>
 
                     <div className="hero-dot">

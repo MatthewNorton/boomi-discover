@@ -79,12 +79,13 @@
         background: #fff;
         -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        @include tile-layout;
         @media (min-width: $desktop) {
             display: grid;
             grid-gap: 10px;
             grid-template-columns: 40px repeat(2, 1fr) auto;
-            grid-template-rows: 0.5fr 0.5fr 0.7fr auto auto;
-            @include tile-layout;
+            grid-template-rows: 0.5fr 0.5fr minmax(min-content, 0.7fr) 50px min-content
+    
         }
     }
     .tile-icon {
@@ -108,7 +109,7 @@
 
     .tile-learn {
         grid-area: learn;
-        align-self: center;
+        align-self: end;
 
         @media (max-width: $desktop) {
             margin-bottom: 20px;
@@ -117,7 +118,7 @@
 
     .tile-live {
         grid-area: live;
-        align-self: center;
+        align-self: end;
         @media (max-width: $desktop) {
             margin-bottom: 20px;
         }
@@ -125,7 +126,7 @@
 
     .tile-label {
         grid-area: label;
-
+        align-self:end;
         cursor: pointer;
         .label {
             border-radius: 40px;

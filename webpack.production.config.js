@@ -11,7 +11,7 @@ module.exports = function(env) {
             filename: flow.filenames.js,
             path: path.resolve(__dirname, 'build')
         },
-        devtool: '',
+        devtool: 'inline-source-map',
         resolve: {
             extensions: [".ts", ".tsx", ".js", ".json"]
         },
@@ -36,7 +36,8 @@ module.exports = function(env) {
                 },
                 { 
                     test: /\.js$/, 
-                    enforce: "pre",
+                    enforce: "pre", 
+                    loader: "source-map-loader" 
                 },
                 {
                     test: /\.s[ac]ss$/i,
@@ -58,7 +59,7 @@ module.exports = function(env) {
                         { loader: 'sass-loader' },
                     ],
                 },
-                { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
+                // { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
             ]
         },
         externals: {
@@ -67,10 +68,7 @@ module.exports = function(env) {
         },
         plugins: [
             new WriteFilePlugin(),
-            new MiniCssExtractPlugin({ filename: flow.filenames.css }),
-            require('autoprefixer'),
-            require('cssnano'),
-            
+            new MiniCssExtractPlugin({ filename: flow.filenames.css })
         ],
     }
 

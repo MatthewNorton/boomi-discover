@@ -84,10 +84,10 @@ class Footer extends React.Component<any, any> {
               <div className="footer-col footer-social">
                 <a href="" className="footer-col--headline">Contact Us</a>
                 <ul className="footer-social list-unstyled">
-                  <li><a href="https://twitter.com/boomi" target="_blank" className="icon-outline icon-sm"><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
-                  <li><a href="https://www.facebook.com/DellBoomi/" target="_blank" className="icon-outline icon-sm"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
-                  <li><a href="https://www.linkedin.com/company/boomi-inc/" target="_blank" className="icon-outline icon-sm"><i className="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                  <li><a href="https://www.youtube.com/channel/UC63U1JBpElNL6anLEeS6fzw" target="_blank" className="icon-outline icon-sm"><i className="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                  <li><a href="https://twitter.com/boomi" target="_blank" className="icon-outline icon-sm"><i className="fa fa-twitter" aria-hidden="true"/></a></li>
+                  <li><a href="https://www.facebook.com/DellBoomi/" target="_blank" className="icon-outline icon-sm"><i className="fa fa-facebook" aria-hidden="true"/></a></li>
+                  <li><a href="https://www.linkedin.com/company/boomi-inc/" target="_blank" className="icon-outline icon-sm"><i className="fa fa-linkedin" aria-hidden="true"/></a></li>
+                  <li><a href="https://www.youtube.com/channel/UC63U1JBpElNL6anLEeS6fzw" target="_blank" className="icon-outline icon-sm"><i className="fa fa-youtube-play" aria-hidden="true"/></a></li>
 
                 </ul>
               </div>

@@ -74,7 +74,7 @@ class Hero extends React.Component<any, any> {
                             width="100%"
                             height="100%"
                             >
-                            <source src={value.videoSource} type="video/mp4"></source>
+                            <source src={value.videoSource} type="video/mp4"/>
                           </video>
                         </div>
                     </div>

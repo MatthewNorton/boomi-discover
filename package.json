@@ -103,8 +103,8 @@
     "id": "3f95386d-ee6c-447a-b863-a210fe4a4c22",
     "versionId": "",
     "filenames": {
-      "js": "custom-component.js",
-      "css": "custom-component.css"
+      "js": "boomi-solutions.js",
+      "css": "boomi-solutions.css"
     }
   },
   "peerDependencies": {},

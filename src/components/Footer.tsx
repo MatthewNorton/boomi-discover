@@ -2,7 +2,7 @@ declare var manywho: any;
 
 import * as React from 'react';
 
-class Footer extends React.Component<any, any> {
+class Footer extends React.Component {
   constructor(props: any) {
     super(props);
 

@@ -24,7 +24,7 @@ const Tile = (props: {
                     <img src={props.icon} alt={props.title} />
                 </div>
                 <div className="tile-title">
-                    <h4>{props.title}</h4>
+                    <h3>{props.title}</h3>
                 </div>
                 <div className="tile-description">
                     <p>{props.description}</p>

@@ -1,4 +1,4 @@
-declare var manywho: any;
+// declare var manywho: any;
 
 import * as React from 'react';
 
@@ -83,3 +83,16 @@ return (
 }
 manywho.component.register('main-nav', Navigation);
 export default Navigation;
+
+// import './css/base.scss';
+// import './css/basic.css';
+
+// class Navigation extends React.Component {
+//     render() {
+//         return <div className="custom-basic">Basic Custom Component</div>;
+//     }
+// }
+
+// manywho.component.register('main-nav', Navigation);
+
+// export default Navigation;

@@ -53,7 +53,7 @@
         width: 100%;
         height: 80px;
         overflow: hidden;
-        border-radius: 10px 10px 0 0;
+        // border-radius: 10px 10px 0 0;
         position: relative;
         grid-row: 1;
         background: white;
@@ -77,8 +77,7 @@
         grid-row: 2;
         padding: 12px;
         background: #fff;
-        -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 20px 0 rgba(0,0,0,0.14), 0 7px 12px -5px #00000012;
         @include tile-layout;
         @media (min-width: $desktop) {
             display: grid;
@@ -90,9 +89,11 @@
     }
     .tile-icon {
         grid-area: tileicon;
+        max-width:33px;
+        align-self:center;
         img {
             max-width: 100%;
-            height: 40px;
+            height: auto;
         }
         @media (max-width: $desktop) {
             text-align: center;
@@ -100,7 +101,7 @@
     }
     .tile-title {
         grid-area: title;
-        align-self: top;
+        align-self: center;
     }
 
     .tile-description {

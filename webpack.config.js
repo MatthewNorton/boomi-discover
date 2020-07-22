@@ -11,7 +11,7 @@ module.exports = function() {
             filename: flow.filenames.js,
             path: path.resolve(__dirname, 'build')
         },
-        devtool: 'source-map',
+        devtool: 'inline-source-map',
         resolve: {
             extensions: [".ts", ".tsx", ".js", ".json"],
         },
@@ -37,22 +37,12 @@ module.exports = function() {
                     test: /\.tsx?$/, 
                     loader: "awesome-typescript-loader" 
                 },
-                // {
-                //     test: /\.scss$/,
-                //     loaders: [
-
-                //     ]
-                // },
                 { 
                     test: /\.js$/, 
                     enforce: "pre", 
                     loader: "source-map-loader" 
                 },
                 {
-                    test: /\.(s*)css$/,
-                    // use: [
-                    //   MiniCssExtractPlugin.loader, "css-loader", "sass-loader"
-                    // ],
                     test: /\.s?css$/,
                     use: [
                         {
@@ -72,13 +62,13 @@ module.exports = function() {
                             loader: 'sass-loader',
                             options: {
                                 sourceMap: true,
-                                outputStyle: 'compressed'
+                                // outputStyle: 'compressed'
                             }
                         }
                     ]
                 },
-
-                { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
+                
+        
             ]
         },
         externals: {
@@ -87,7 +77,6 @@ module.exports = function() {
         },
         plugins: [
             new WriteFilePlugin(),
-            // new ExtractTextPlugin(({ filename: flow.filenames.css })),
             new MiniCssExtractPlugin({ filename: flow.filenames.css })
         ],
     }

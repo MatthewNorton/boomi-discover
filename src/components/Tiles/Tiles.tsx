@@ -12,14 +12,14 @@ declare var manywho: any;
 */
 
 import * as React from 'react';
-// import TagNav from './TagNav/TagNav'; // NOT USED IN VERSION 1.
+import TagNav from './TagNav/TagNav';
 import Tile from './TileItem/TileItem';
 
 /* ########################## */
 /* ##### TILES COMPONENT  ##### */
 /* ########################## */
 
-class TileWrapper extends React.Component<any, any> {
+class Tiles extends React.Component<any, any> {
 
     constructor(props: any) {
         super(props);
@@ -27,8 +27,7 @@ class TileWrapper extends React.Component<any, any> {
             items: [],
             visibility: 'Boomi Solutions',
         };
-        this.tileFilterAction = this.tileFilterAction.bind(this);
-        this.tileFilteredList = this.tileFilteredList.bind(this);
+
         this.tagParam = this.tagParam.bind(this);
     }
     /* ----------------------------
@@ -104,13 +103,7 @@ class TileWrapper extends React.Component<any, any> {
                 order: order.contentValue,
             });
         });
-        // items.fetchPosts().then((response) => {
-        //     this.setState({
-        //       posts: response.posts,
-        //     });
-        //   });
 
-        // console.log(this.state.posts);
         /* ----------------------------
       Error cleanup by replacing
       null values with an empty string.
@@ -143,35 +136,10 @@ class TileWrapper extends React.Component<any, any> {
         }
     }
 
-    /* ----------------------------
-    ACTION: Click state Creating a clickable filter. Clicking a tag will filter the tiles.
-
-    --------------------------------*/
-    tileFilterAction = (event) => {
-        this.setState({
-            visibility: event.target.getAttribute('data-value'),
-        });
-
-    }
-
-    /* ----------------------------
-    FILTEREDLIST: Click state Creating a clickable filter. Clicking a tag will filter the tiles.
-
-    --------------------------------*/
-    tileFilteredList = () => {
-        const visibility = this.state.visibility;
+  render() {
         const items = this.state.items;
-        const filterItems = items.filter((item) => {
-            return visibility !== 'Boomi Solutions'
-                ? item.tags
-                      .toLowerCase()
-                      .split(',')
-                      .join(',')
-                      .indexOf(visibility.toLowerCase(), -1) > -1
-                : true;
-        });
-        const sortItems = filterItems.sort((a, b) => a.order - b.order);
-        const mapItems  = filterItems.map((value, i) => {
+        const sortItems = items.sort((a, b) => a.order - b.order);
+        const mapItems  = sortItems.map((value, i) => {
             return (
                 <Tile
                     key={i}
@@ -187,19 +155,15 @@ class TileWrapper extends React.Component<any, any> {
             );
         });
 
-        return mapItems;
-    }
-
-    render() {
         return (
             <div className="wrapper">
                 <div className="tile-wrapper">
-                    <ul className="tile-listing">{this.tileFilteredList()}</ul>
+                    <ul className="tile-listing">{mapItems}</ul>
                 </div>
             </div>
         );
     }
 }
 
-manywho.component.register('tile-component', TileWrapper);
-export default TileWrapper;
+manywho.component.register('tile-component', Tiles);
+export default Tiles;

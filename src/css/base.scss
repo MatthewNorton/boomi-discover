@@ -71,8 +71,11 @@ body {
     /* animation*/
     --timing: 700ms; 
     --motion: cubic-bezier(0.19, 1, 0.22, 1);
+    
   }
-
+.flow-container {
+  display:block;
+}
 
 @import './flow-reset.scss';
 @import './global.scss';

@@ -42,14 +42,27 @@
     margin:0 auto;
     .btn {
       background: #fff;
-      border-color: #fff;
+      box-shadow: 0 0 0 1px #ffffff;
+      border-color:transparent;
       color: #033d58;
       text-transform: uppercase;
       font-weight: 600;
       letter-spacing: 3px;
       border-radius: 0;
+      margin-right:24px;
+      margin-bottom:24px;
+      font-size:14px;
       &:hover, &:focus {
         color: #426e82;
+      }
+      &.ghost {
+        background:transparent;
+        color:#fff;
+
+        &:hover, &:focus {
+          box-shadow: 0 0 0 1px #ffffff;
+          background: rgba(2,41,59,.3);
+        }
       }
     }
   }  

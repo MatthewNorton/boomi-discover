@@ -1,13 +1,17 @@
-declare var manywho: any;
+// declare var manywho: any;
 
 import * as React from 'react';
 
-class Navigation extends React.Component<any, any> {
+interface NavLinks {
+  links: any;
+}
+
+class Navigation extends React.Component<any, NavLinks> {
     constructor(props: any) {
         super(props);
 
         this.state = {
-            items: [],
+            links: [],
         };
     }
 
@@ -22,7 +26,7 @@ class Navigation extends React.Component<any, any> {
               const href = result.properties.find((property: any) => property.typeElementPropertyId === columns[3].typeElementPropertyId);
               const classAttr = result.properties.find((property: any) => property.typeElementPropertyId === columns[4].typeElementPropertyId);
 
-              this.state.items.push({
+              this.state.links.push({
                   id: id.contentValue,
                   name: name.contentValue,
                   href: href.contentValue,
@@ -35,8 +39,7 @@ class Navigation extends React.Component<any, any> {
 
     }
     render() {
-
-        return (
+return (
           <div className="wrapper wrapper-nav">
             <div className="topnav">
               <ul>
@@ -55,14 +58,14 @@ class Navigation extends React.Component<any, any> {
               <div className="bottomnav-wrapper container">
                   <h1 className="bottomnav-logo">
                     <a href="https://www.boomi.com" title="Boomi iPaaS Solutions &amp; Tools for Cloud Connected Business">
-                      <img src="https://cdn.brandfolder.io/W49AM39J/as/pxzggw-bgotog-1vnhuw/boomi-website-logo.svg?max_age=604800" alt=""></img>
+                      <img src="https://cdn.brandfolder.io/W49AM39J/as/pxzggw-bgotog-1vnhuw/boomi-website-logo.svg?max_age=604800" alt=""/>
                       </a>
                   </h1>
                   <h4 className="bottomnav-subtitle">Boomi Solutions Catalog</h4>
-                  { this.state.items.length > 0 &&
+                  { this.state.links.length > 0 &&
                   <nav className="bottomnav-links">
                     <ul>
-                      { this.state.items.map((value, index) => {
+                      { this.state.links.map((value: any, index: number) => {
                         return <li className={value.classAttr} key={index}>
                           <a href={value.href} target={value.target}>{value.name}</a>
                         </li>;
@@ -80,3 +83,16 @@ class Navigation extends React.Component<any, any> {
 }
 manywho.component.register('main-nav', Navigation);
 export default Navigation;
+
+// import './css/base.scss';
+// import './css/basic.css';
+
+// class Navigation extends React.Component {
+//     render() {
+//         return <div className="custom-basic">Basic Custom Component</div>;
+//     }
+// }
+
+// manywho.component.register('main-nav', Navigation);
+
+// export default Navigation;

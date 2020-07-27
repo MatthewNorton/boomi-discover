@@ -32,6 +32,9 @@ class Hero extends React.Component<any, any> {
             const backgroundGradient = result.properties.find((property: any) => property.typeElementPropertyId === columns[5].typeElementPropertyId);
             const backgroundPattern = result.properties.find((property: any) => property.typeElementPropertyId === columns[6].typeElementPropertyId);
             const videoSource = result.properties.find((property: any) => property.typeElementPropertyId === columns[7].typeElementPropertyId);
+            const button2ndTitle = result.properties.find((property: any) => property.typeElementPropertyId === columns[8].typeElementPropertyId);
+            const button2ndHref = result.properties.find((property: any) => property.typeElementPropertyId === columns[9].typeElementPropertyId);
+            const button2ndTarget = result.properties.find((property: any) => property.typeElementPropertyId === columns[10].typeElementPropertyId);
 
             this.state.items.push({
               title: title.contentValue,
@@ -42,6 +45,9 @@ class Hero extends React.Component<any, any> {
               backgroundGradient: backgroundGradient.contentValue,
               backgroundPattern: backgroundPattern.contentValue,
               videoSource: videoSource.contentValue,
+              button2ndTitle: button2ndTitle.contentValue,
+              button2ndHref: button2ndHref.contentValue,
+              button2ndTarget: button2ndTarget.contentValue,
             });
 
         });
@@ -62,6 +68,7 @@ class Hero extends React.Component<any, any> {
                       <h1 className="hero-title">{value.title}</h1>
                       <h3 className="hero-description">{value.description}</h3>
                       <a href={value.buttonHref} target={value.buttonTarget} title={value.buttonTitle} className="btn btn-primary">{value.buttonTitle}</a>
+                      <a href={value.button2ndHref} target={value.button2ndTarget} title={value.button2ndTitle} className="btn btn-primary ghost">{value.button2ndTitle}</a>
                     </div>
 
                     <div className="hero-dot">
@@ -74,7 +81,7 @@ class Hero extends React.Component<any, any> {
                             width="100%"
                             height="100%"
                             >
-                            <source src={value.videoSource} type="video/mp4"></source>
+                            <source src={value.videoSource} type="video/mp4"/>
                           </video>
                         </div>
                     </div>

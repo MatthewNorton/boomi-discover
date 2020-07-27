@@ -2,56 +2,57 @@ import * as React from 'react';
 /* ########################## */
 /* ##### INVIDIUAL TILE Template ##### */
 /* ########################## */
-const Tile = ({
-    icon,
-    tagged,
-    liveUrl,
-    learnUrl,
-    title,
-    description,
-    image,
-    order,
-    click,
+const Tile = (props: {
+    icon: string,
+    tagged: any,
+    liveUrl: string,
+    learnUrl: string,
+    title: string,
+    description: string,
+    image: string,
+    order: string,
+    click: any,
+
 }) => {
     return (
-        <li key={tagged} className="tile-item">
+        <li key={props.tagged} className="tile-item">
             <div className="tile-img">
-                <img src={image} alt={title} />
+                <img src={props.image} alt={props.title} />
             </div>
-            <div className="tile-content" data-order={order}>
+            <div className="tile-content" data-order={props.order}>
                 <div className="tile-icon">
-                    <img src={icon} alt={title} />
+                    <img src={props.icon} alt={props.title} />
                 </div>
                 <div className="tile-title">
-                    <h4>{title}</h4>
+                    <h3>{props.title}</h3>
                 </div>
                 <div className="tile-description">
-                    <p>{description}</p>
+                    <p>{props.description}</p>
                 </div>
-                {liveUrl.length > 0 && (
+                {props.liveUrl.length > 0 && (
                     <div className="tile-live">
                         <a
-                            href={liveUrl}
+                            href={props.liveUrl}
                             data-name="Live Example"
                             className="btn btn-primary"
                             target="_blank"
-                        ></a>
+                        />
                     </div>
                 )}
                 <div className="tile-learn">
                     <a
                         className="btn btn-primary ghost"
                         data-name="Learn More"
-                        href={learnUrl}
+                        href={props.learnUrl}
                         target="_blank"
-                    ></a>
+                    />
                 </div>
 
                 <div className="tile-label">
-                    {tagged.map((tag) => (
+                    {props.tagged.map((tag: any) => (
                         <span
                             data-value={tag}
-                            onClick={click}
+                            onClick={props.click}
                             className="label label-warning"
                         >
                             {tag}

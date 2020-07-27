@@ -4,21 +4,13 @@
         "sourceMap": true,
         "noImplicitAny": false,
         "module": "commonjs",
-        "target": "esnext",
-        "jsx": "react",
-        "esModuleInterop": true,
-        "allowJs": true, // allow a partial TypeScript and JavaScript codebase
-        "lib": ["dom","es7", "esnext"],
-        "skipLibCheck": true,
         "downlevelIteration": true,
-        "allowSyntheticDefaultImports": true,
-        "typeRoots": [
-            "./node_modules/@types",
-            "./types/",
-        ],
-        "types": ["node"],
+        "target": "es5",
+        "jsx": "react",
+        "lib": ["es2015", "dom"],
+        "skipLibCheck": true,
     },
     "include": [
         "./src/**/*"
-    ]
+    ],
 }

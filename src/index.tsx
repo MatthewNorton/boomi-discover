@@ -1,5 +1,7 @@
-import './assets/stylesheets/base.scss';
-import './components/Footer/Footer';
+import './components/Footer';
 import './components/Hero/Hero';
 import './components/Nav/Navigation';
 import './components/Tiles/Tiles';
+import './css/base.scss';
+
+// export * from './components/Footer';

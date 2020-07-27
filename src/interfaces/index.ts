@@ -299,7 +299,7 @@ export interface IComponentIdProps {
 
 interface IComponentPropsBase<T> extends IComponentIdProps {
     model: T;
-    outcomes: Array<React.ComponentElement<{id: string, flowKey: string}, any>> | null;
+    outcomes: IOutcome[] | null;
     className: string[] | null;
 }
 
@@ -309,14 +309,15 @@ export interface IComponentProps extends IComponentPropsBase<IComponentModel> {
      * SYNC with the API to invoke any page conditions attached to this component
      * @param callback Callback to fire after re-rendering
      */
-    onEvent: (callback?: () => void) => void;
+    // tslint:disable-next-line:ban-types
+    onEvent: (callback?: React.FocusEvent<HTMLInputElement> | Function) => void;
     /**
      * Update this components local state. Scalar values only.
      * @param value New content value
      * @param validate Perform clientside validation, if the global setting is enabled
      * @param push Inform other connected clients of the new value, if realtime collaboration is enabled
      */
-    onChange: (value: string | number | boolean | null, validate?: boolean, push?: boolean) => void;
+    onChange: (value: string | number | boolean | React.ChangeEvent<HTMLInputElement> | null, validate?: boolean, push?: boolean) => void;
 
     /**
      * Update this components local state with selected ObjectData
@@ -361,4 +362,10 @@ export interface IOutcomeProps {
     id: string;
     flowKey: string;
     objectData?: any[];
+}
+
+declare global {
+    namespace globalThis {
+        const manywho: IManywho;
+    }
 }

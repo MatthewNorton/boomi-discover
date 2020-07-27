@@ -10,6 +10,7 @@ import {
     IObjectData,
     IObjectDataProperty,
     IObjectDataRequest,
+    IOutcome,
     ITag,
 } from '../interfaces';
 import { debugComponent } from './debug';
@@ -17,8 +18,6 @@ import { addProperties, removeProperties } from './objectData';
 import { objectDataHandler } from './proxy';
 
 const dedent: any = require('dedent');
-
-declare const manywho: IManywho;
 
 const getProps = (id: string, parentId: string, flowKey: string) => {
     const model = manywho.model.getItem(id, flowKey);
@@ -29,16 +28,29 @@ const getProps = (id: string, parentId: string, flowKey: string) => {
         flowKey,
         id,
         model,
-        outcomes: outcomes && outcomes
-            .map((outcome) => React.createElement(manywho.component.getByName('outcome'), { id: outcome.id, flowKey})),
+        outcomes,
         parentId,
     };
 };
 
+const getChangeValue = (value: string | number | boolean | React.ChangeEvent<HTMLInputElement> | null): string | number | boolean | null => {
+    if (typeof value === 'object' && value) {
+        switch (value.target.type) {
+            case 'checkbox':
+                return value.target.checked;
+            default:
+                return value.target.value;
+        }
+    }
+
+    return value as string | number | boolean | null;
+};
+
 export const container = (
     Container: React.ComponentClass<IContainerProps> | React.FunctionComponent<IContainerProps>,
+    containerType: string,
 ) => {
-    return ({ id, parentId, flowKey }: IComponentIdProps) => {
+    const instance = ({ id, parentId, flowKey }: IComponentIdProps) => {
         const model: IContainerModel = manywho.model.getContainer(id, flowKey);
         const children = manywho.model.getChildren(id, flowKey);
 
@@ -56,13 +68,20 @@ export const container = (
 
         return React.createElement(Container, props);
     };
+
+    if (containerType) {
+        manywho.component.registerContainer(containerType, instance);
+    }
+
+    return instance;
 };
 
 export const component = (
     Component: React.ComponentClass<IComponentProps> | React.FunctionComponent<IComponentProps>,
     isDebugRenderingEnabled: boolean = false,
+    componentType?: string,
 ) => {
-    return ({ id, parentId, flowKey }: IComponentIdProps) => {
+    const instance = ({ id, parentId, flowKey }: IComponentIdProps) => {
         const model: IComponentModel = manywho.model.getComponent(id, flowKey);
 
         const validateState = (push: boolean = true) => {
@@ -75,8 +94,8 @@ export const component = (
             );
         };
 
-        const onChange = (value: string | number | boolean | null, validate: boolean = true, push: boolean = true) => {
-            manywho.state.setComponent(id, { contentValue: value }, flowKey, push);
+        const onChange = (value: string | number | boolean | React.ChangeEvent<HTMLInputElement> | null, validate: boolean = true, push: boolean = true) => {
+            manywho.state.setComponent(id, { contentValue: getChangeValue(value) }, flowKey, push);
 
             if (validate) {
                 validateState(push);
@@ -113,12 +132,13 @@ export const component = (
             }
         };
 
-        const onEvent = (callback?: () => void) => {
+        // tslint:disable-next-line:ban-types
+        const onEvent = (callback?: React.FocusEvent<HTMLInputElement> | Function) => {
             manywho.component.handleEvent(
-                this,
+                this as any,
                 model,
                 flowKey,
-                callback,
+                typeof callback === 'function' ? callback as () => void : null,
             );
         };
 
@@ -214,4 +234,14 @@ export const component = (
             return React.createElement(Component, props);
         }
     };
+
+    if (componentType) {
+        manywho.component.register(componentType, instance);
+    }
+
+    return instance;
 };
+
+export const renderOutcomes = (outcomes: IOutcome[], flowKey: string, componentType: string = 'outcome') => (
+    (outcomes || []).map((outcome) => React.createElement(manywho.component.getByName(componentType), { id: outcome.id, flowKey, outcome }))
+);

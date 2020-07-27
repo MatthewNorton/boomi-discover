@@ -163,7 +163,7 @@ class Tiles extends React.Component<any, any> {
                     liveUrl={value.liveUrl}
                     learnUrl={value.learnUrl}
                     order={value.order}
-                    click={value.click}
+                    click={this.tileFilterAction}
                 />
             );
         });

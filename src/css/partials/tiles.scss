@@ -1,0 +1,168 @@
+// Icon Layout 
+@mixin tile-listing-layout {
+
+}
+@mixin tile-content-layout {
+    grid-template-areas:
+        'title title title'
+        'description description description'
+        'cta cta cta'
+        'label label label';
+}
+
+
+.tile-wrapper {
+    // padding:0 40px;
+    margin-top: 120px;
+    max-width: $hd;
+    margin: 0 auto;
+    > .container:before { 
+        content: initial;
+    }
+}
+.tile-listing {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    @supports (display: grid) {
+        @include grid(#{$hd}, 4); // Grid layout (1 across, 2 across, 3, across etc...); 
+        grid-gap: 40px;
+    }
+    @media (max-width: $hd) {
+        padding: 0 10px;
+    }
+    .tile-item {
+        position: relative;
+        display: grid;
+        grid-gap: 0px;
+        grid-template-rows: 80px 1fr; /* img + content */
+        width: 400px;
+        max-width: 100%;
+        transition: opacity 0.1s;
+        margin: 0 auto;
+        &:hover,
+        &:focus {
+            .tile-img {
+                background: $brand2;
+                // border-radius: 10px 10px 0 0;
+                img {
+                    transform: rotate(-5deg) scale(1.1) translate(-50%, -50%);
+                    mix-blend-mode: multiply;
+                }
+            }
+        }
+        
+    }
+}
+.tile-img {
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    // border-radius: 10px 10px 0 0;
+    position: relative;
+    grid-row: 1;
+    background: white;
+    img {
+        max-width: 500px;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 700ms cubic-bezier(0.19, 1, 0.22, 1);
+        will-change: transform;
+        @media (max-width: $tablet) {
+            max-width: $tablet;
+        }
+    }
+}
+.tile-content {
+    position: relative;
+    grid-row: 2;
+    padding: 12px;
+    background: #fff;
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,0.14), 0 7px 12px -5px #00000012;
+    @include tile-content-layout;
+    @media (min-width: $desktop) {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 40px repeat(2, 1fr) auto;
+        grid-template-rows: 0.5fr 0.5fr minmax(min-content, 0.7fr) 50px min-content
+
+    }
+    .tile-icon {
+        grid-area: tileicon;
+        max-width:33px;
+        align-self:center;
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        @media (max-width: $desktop) {
+            text-align: center;
+        }
+    }
+    .tile-title {
+        grid-area: title;
+        align-self: center;
+    }
+    .tile-description {
+        grid-area: description;
+    }
+    .tile-cta {
+        grid-area: cta;
+        align-self: center;
+        text-align:center;
+        .btn-primary {
+            margin-right:20px;
+            box-shadow: 0 0 0 1px #033d58;
+            margin-bottom:5px;
+            &.ghost{
+                margin-right:0;
+                box-shadow: 0 0 0 1px #033d58;
+            }
+        }
+    
+        @media (max-width: $desktop) {
+            margin-bottom: 20px;
+        }
+    }
+    // .tile-learn {
+    //     grid-area: learn;
+    //     align-self: end;
+    
+    //     @media (max-width: $desktop) {
+    //         margin-bottom: 20px;
+    //     }
+    // }
+    .tile-label {
+        grid-area: label;
+        align-self:end;
+        cursor: pointer;
+        .label {
+            border-radius: 40px;
+            display: inline-block;
+            margin-right: 10px;
+            color: $brand1;
+            text-transform: capitalize;
+            font-size: 13px;
+            font-weight: 100;
+            line-height: 1em;
+            &:hover,
+            &:focus {
+                background-color: $brand1;
+                color: $brand3;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+.cta-secondary[data-name]:before { content: "LEARN MORE";}
+.cta-primary[data-name]:before { content: "LIVE EXAMPLE"}

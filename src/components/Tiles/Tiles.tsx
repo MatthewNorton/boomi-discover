@@ -195,6 +195,7 @@ class Tiles extends React.Component<any, any> {
     }
 
     render() {
+
         return (
             <div className="wrapper">
 

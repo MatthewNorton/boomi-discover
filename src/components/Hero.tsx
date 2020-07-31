@@ -57,7 +57,6 @@ class Hero extends React.Component<any, any> {
       this.heroBuild();
     }
   render() {
-    console.log(this.state.items);
     return (<div className="wrapper">
 
             { this.state.items.map((value, index) => {

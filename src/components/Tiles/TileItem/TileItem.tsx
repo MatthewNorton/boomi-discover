@@ -20,32 +20,33 @@ const Tile = (props: {
                 <img src={props.image} alt={props.title} />
             </div>
             <div className="tile-content" data-order={props.order}>
-                <div className="tile-icon">
+                {/* <div className="tile-icon">
                     <img src={props.icon} alt={props.title} />
-                </div>
+                </div> */}
                 <div className="tile-title">
                     <h3>{props.title}</h3>
                 </div>
                 <div className="tile-description">
                     <p>{props.description}</p>
                 </div>
+                <div className="tile-cta">
                 {props.liveUrl.length > 0 && (
-                    <div className="tile-live">
+
                         <a
                             href={props.liveUrl}
                             data-name="Live Example"
-                            className="btn btn-primary"
+                            className="btn btn-primary cta-primary"
                             target="_blank"
                         />
-                    </div>
+
                 )}
-                <div className="tile-learn">
-                    <a
-                        className="btn btn-primary ghost"
-                        data-name="Learn More"
-                        href={props.learnUrl}
-                        target="_blank"
-                    />
+                        <a
+                            className="btn btn-primary ghost cta-secondary"
+                            data-name="Learn More"
+                            href={props.learnUrl}
+                            target="_blank"
+                        />
+
                 </div>
 
                 <div className="tile-label">

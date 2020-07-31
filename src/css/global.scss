@@ -2,10 +2,59 @@
 // APPLIES TO ALL COMPONENTS
 // =================================
 
-$wide: 1920px;
-$hd: 1360px;
-$desktop: 1028px;
-$tablet: 768px;
+
+
+body {
+    color: #454545;
+  
+    font-size: 16px;
+    -webkit-overflow-scrolling: touch;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    
+    
+    
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    .fa {
+
+      font-family:"Font Awesome 5 Brands";
+    }
+    /* Brand Colors */
+    --b1: #033d58;
+    --b2: #009688;
+    --b3: #ff7c66;
+    --b4: #0087cc;
+    --b5: #fedb00;
+    /* Brand Gray / Grey Colors */
+    --g1: #eeeeee;
+    --g2: #ababab;
+    --g3: #808080;
+    --g4: #454545;
+    /* Sizes */
+    --s0: 0px;
+    --s5: 5px;
+    --s10: 10px;
+    --s20: 20px;
+    --s25: 25px;
+    --s30: 30px;
+    --s40: 40px;
+    --s50: 50px;
+    --s60: 60px;
+    --s70: 70px;
+    --s80: 80px;
+    --s90: 90px;
+    /* Resolutions */
+
+    /* animation*/
+    --timing: 700ms; 
+    --motion: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
 
 html {
   font-weight: 100;
@@ -28,7 +77,7 @@ h2,
 h3,
 h5,
 .mw-bs {
-  font-family: fieldwork, sans-serif;
+  font-family: fieldwork,sans-serif;
   font-style: normal;
 }
 
@@ -148,9 +197,11 @@ body {
      background-image: none;
      border: 1px solid transparent;
      padding: 12px 15px;
-     font-size: 15px;
+     font-size: 14px;
+     font-weight: 600;
      line-height: 1.42857143;
      border-radius: 0px;
+     letter-spacing:2px;
      -webkit-user-select: none;
      -moz-user-select: none;
      -ms-user-select: none;

@@ -61,7 +61,7 @@ return (
                       <img src="https://cdn.brandfolder.io/W49AM39J/as/pxzggw-bgotog-1vnhuw/boomi-website-logo.svg?max_age=604800" alt=""/>
                       </a>
                   </h1>
-                  <h4 className="bottomnav-subtitle">Boomi Solutions Catalog</h4>
+                  <h3 className="bottomnav-subtitle">Boomi Solutions Catalog</h3>
                   { this.state.links.length > 0 &&
                   <nav className="bottomnav-links">
                     <ul>

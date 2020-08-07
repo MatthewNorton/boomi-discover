@@ -84,10 +84,10 @@ class Hero extends React.Component<any, any> {
                           </video>
                         </div>
                     </div>
-                </div>;
+                </div>
               </div>;
-              })
-            }
+            })
+          }
           </div>
         );
     }

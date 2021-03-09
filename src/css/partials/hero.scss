@@ -7,8 +7,8 @@
   $hero-bg-color: linear-gradient(90deg, #033d58, #22C5BE);
   $hero-bg: url('https://files-manywho-com.s3.amazonaws.com/833169c7-3807-43da-b087-0995e4eb67c4/homepage-particles-a.png');
   $hero-dot-color:#1faba8;
-  $hero-dot-width: 440px;
-  $hero-dot-height: 430px;
+  $hero-dot-width: 360px;
+  $hero-dot-height: 350px;
   
   .hero-container {
     min-height: 465px; 
@@ -129,8 +129,8 @@
       height: 100%;
       object-fit: cover;
       video {
-        width: 440px;
-        height: 430px;
+        width: 360px;
+        height: 350px;
         overflow:hidden;
         object-fit: cover;
         @supports (-ms-ime-align:auto){ 

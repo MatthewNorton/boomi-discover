@@ -1,19 +1,8 @@
-declare var manywho: any;
-
-/* Workflow Component Structure
-
- 2. Tile Nav [Where the tag nav module lives]
- 3. Tile Item [Where the individual tile module lives]
- 4. Tile Wrapper [Is where all the modules come together form the tile component]
-
- [Tile Item] & [Tag Nav] =>
- [Tile Wrapper]
-
-*/
-
+declare const manywho: any;
 import * as React from 'react';
+import SearchBar from './SearchTile/SearchBar';
 import TagNav from './TagNav/TagNav';
-import Tile from './TileItem/TileItem';
+import Tile from './Tile/Tile';
 
 /* ########################## */
 /* ##### TILES COMPONENT  ##### */
@@ -25,10 +14,12 @@ class Tiles extends React.Component<any, any> {
         super(props);
         this.state = {
             items: [], /* The array flowData is placed in */
-            defaultTag: 'All',
+            defaultTag: ' ',
+            search: '',
         };
         this.tileFilterAction = this.tileFilterAction.bind(this); // filter ONCLICK action
         this.tileFilteredList = this.tileFilteredList.bind(this); // the filterList after the onclick takes places
+        this.searchTiles= this.searchTiles.bind(this); // the filterList after the onclick takes places
         this.tagParam = this.tagParam.bind(this);
     }
     /* ----------------------------
@@ -36,10 +27,12 @@ class Tiles extends React.Component<any, any> {
     --------------------------------*/
 
     /* Loads the Flow data & &f= param functionality after run time */
+
     componentDidMount() {
         this.flowData();
         this.tagParam();
     }
+
     flowData = () => {
         const modelAll = manywho.model.getComponents(this.props.flowKey);
         const items = this.state.items;
@@ -119,60 +112,7 @@ class Tiles extends React.Component<any, any> {
     }
 
     /* ----------------------------
-    ACTION: Click state Creating a clickable filter. Clicking a tag will filter the tiles.
-
-    --------------------------------*/
-    tileFilterAction = (event) => {
-        this.setState({
-            defaultTag: event.target.getAttribute('data-value'),
-        });
-
-    }
-
-    /* ----------------------------
-    FILTEREDLIST: Click state Creating a clickable filter. Clicking a tag will filter the tiles.
-
-    --------------------------------*/
-    tileFilteredList = () => {
-        const defaultTag = this.state.defaultTag;
-        const items = this.state.items; // array
-
-    /* Filter will search through the array based on defaultTag. IE: if data-value === */
-
-        const filterItems = items.filter((item) => {
-            // If does NOT = all, then filter based on the data-value.
-            return defaultTag !== 'All'
-                ? item.tags
-                      .toLowerCase()
-                      .split(',')
-                      .join(',')
-                      .indexOf(defaultTag.toLowerCase(), -1) > -1
-                : true;
-        });
-
-        const sortItems = filterItems.sort((a, b) => a.order - b.order);
-        const mapItems  = filterItems.map((value, i) => {
-            return (
-                <Tile
-                    key={i}
-                    icon={value.icon}
-                    image={value.image}
-                    title={value.title}
-                    description={value.description}
-                    tagged={value.tags.split(',')}
-                    liveUrl={value.liveUrl}
-                    learnUrl={value.learnUrl}
-                    order={value.order}
-                    click={this.tileFilterAction}
-                />
-            );
-        });
-
-        return mapItems;
-    }
-    /* ----------------------------
       function that is used for &f= url parameter. Example:
-
     --------------------------------*/
     tagParam = () => {
         const params = new URLSearchParams(
@@ -189,22 +129,104 @@ class Tiles extends React.Component<any, any> {
             });
         }
     }
-    render() {
 
-        return (
+    /* ----------------------------
+    ACTION: Click state Creating a clickable filter. Clicking a tag will filter the tiles.
+    --------------------------------*/
+    tileFilterAction = (event) => {
+        this.setState({
+            // If default tag === All clear the tag from search to display every tile. Otherwise filter tiles to the tag clicked.
+            search:( (event.target.getAttribute('data-value') === 'All' ? '' : event.target.getAttribute('data-value'))),
+            defaultTag: event.target.getAttribute('data-value')
+        });
+
+    }
+
+    /* ----------------------------
+    FILTEREDLIST: Click state Creating a clickable filter. Clicking a tag will filter the tiles.
+    --------------------------------*/
+    tileFilteredList = () => {
+        const defaultTag = this.state.defaultTag;
+        const items = this.state.items;
+    /* Filter will search through the array based on defaultTag. IE: if data-value === */
+
+        const filterItems = items.filter((item) => {
+            // If does NOT = all, then filter based on the data-value.
+            return defaultTag !== 'All' ? item.tags.toLowerCase().split(',').join(',').indexOf(defaultTag.toLowerCase(), -1) > -1 : true;
+
+        });
+
+    }
+
+    /* ----------------------------
+    SEARCH Event Handler
+    --------------------------------*/
+    searchTiles = (event) => {
+        this.setState({
+            search: event.target.value
+        });
+    }
+
+    /* ----------------------------
+    SEARCH Filter
+    --------------------------------*/
+
+ render() {
+     /* ----------------------------
+    SEARCH Filter
+    --------------------------------*/
+    const tiles = this.state.items;
+
+    // Searching for tile based on text from each tile. 
+    let searchTile = (arr, str) => {
+        return arr.filter(x => Object.values(x)
+         .join(' ')
+         .toLowerCase()
+         .includes(str.toLowerCase())
+         )
+    }
+    // console.log(this.props.tileFilteredList());
+    const filtered = searchTile(tiles, this.state.search);
+
+
+    return (
+        <React.StrictMode>
             <div className="wrapper">
+                <SearchBar
+                   inputValue={this.state.search}
+                   itemSearchOnChange={this.searchTiles}
 
+                />
                 <TagNav
-                    // tag={this.state.defaultTag}
                     items={this.state.items}
                     buttonAction={this.tileFilterAction}
-                    activeClass="test"
+                    activeClass=""
 
                 />
                 <div className="tile-wrapper">
-                    <ul className="tile-listing">{this.tileFilteredList()}</ul>
+
+                    <ul className="tile-listing">
+                        {filtered.map((value, i) => {
+
+                            return <Tile
+                                    key={i}
+                                    icon={value.icon}
+                                    image={value.image}
+                                    title={value.title}
+                                    description={value.description}
+                                    tagged={value.tags.split(',')}
+                                    liveUrl={value.liveUrl}
+                                    learnUrl={value.learnUrl}
+                                    order={value.order}
+                                    click={this.tileFilterAction}
+                                />;
+                        })
+                        }
+
+                    </ul>
                 </div>
             </div>
+        </React.StrictMode>
         );
     }
 }

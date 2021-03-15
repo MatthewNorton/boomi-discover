@@ -28,7 +28,8 @@ module.exports = function() {
                         {
                             loader: 'tslint-loader',
                             options: {
-                                fix: true
+                                fix: false,
+                                emitErrors: false,
                             }
                         }
                     ]

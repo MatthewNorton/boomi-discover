@@ -61,9 +61,9 @@ class Hero extends React.Component<any, any> {
 
             { this.state.items.map((value, index) => {
 
-              return <div className="hero-container">
+              return <div key={index} className="hero-container">
                 <div className="hero-wrapper">
-                   <div key={index} className="hero-content">
+                   <div className="hero-content">
                       <h1 className="hero-title">{value.title}</h1>
                       <h3 className="hero-description">{value.description}</h3>
                       <a href={value.buttonHref} target={value.buttonTarget} title={value.buttonTitle} className="btn btn-primary">{value.buttonTitle}</a>

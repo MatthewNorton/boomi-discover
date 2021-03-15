@@ -19,6 +19,7 @@ $gray4: #454545;
 @import './flow-reset.scss';
 @import './global.scss';
 .mw-bs {
+    @import './partials/search.scss';
     @import './partials/nav.scss';
     @import './partials/hero.scss';
     @import './partials/tiles.scss';

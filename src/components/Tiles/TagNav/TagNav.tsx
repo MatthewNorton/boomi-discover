@@ -10,6 +10,7 @@ const TagNav = ({
     activeClass,
 }) => {
     // List ALLLLL of the Tags + duplicates
+    
     const tagSplit = items.map((x) => x.tags.split(','));
     // Merge Tags & sort
     const tagArray = [].concat(...tagSplit);

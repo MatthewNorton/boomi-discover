@@ -10,7 +10,7 @@ const TagNav = ({
     activeClass,
 }) => {
     // List ALLLLL of the Tags + duplicates
-    
+
     const tagSplit = items.map((x) => x.tags.split(','));
     // Merge Tags & sort
     const tagArray = [].concat(...tagSplit);
@@ -35,7 +35,7 @@ const TagNav = ({
                             <button key={i}
                                 data-value={tag.toLowerCase()}
                                 onClick={buttonAction}
-                                className={activeClass}
+                                className={tag}
                             >
                                 {tag}
                             </button>

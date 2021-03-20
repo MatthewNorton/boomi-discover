@@ -10,7 +10,7 @@ const SearchBar = (props: {
 }) => {
     return (
         <div className="tag-nav-wrapper search-bar">
-           <label htmlFor="Bar"></label>
+           <label htmlFor="Bar"/>
            <input type="text" placeholder="Search" value={props.inputValue} onChange={props.itemSearchOnChange}/>
         </div>
     );

@@ -29,7 +29,7 @@ module.exports = function() {
                             loader: 'tslint-loader',
                             options: {
                                 fix: false,
-                                emitErrors: false,
+                                // emitErrors: false,
                             }
                         }
                     ]

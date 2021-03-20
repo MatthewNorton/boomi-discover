@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <link rel="icon" href="https://assets.manywho.com/img/favicon.ico">
-    <title>Boomi Flow</title>
+    <title>Boomi Flow Solutions [Localhost]</title>
     <link id="theme">
     <style>
         .mw-bs .wait-container {
@@ -122,6 +122,10 @@
                         uri: 'https://flow.manywho.com'
                     }
                 });
+                var filter = queryParameters['f'];
+                var inputs = [];
+                if (filter!=null) inputs.push({ "input_filter": filter });
+                var jsonInputs = manywho.json.generateFlowInputs(inputs);
 
                 var options = {
                     authentication: {
@@ -132,10 +136,11 @@
                     mode: queryParameters['mode'],
                     reportingMode: queryParameters['reporting-mode'],
                     replaceUrl: true,
+                    disableScripting: true,
                     collaboration: {
                         isEnabled: false
                     },
-                    inputs: null,
+                    inputs: jsonInputs,
                     annotations: null,
                     navigation: {
                         isFixed: true,

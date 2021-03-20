@@ -50,8 +50,8 @@ const Tile = (props: {
                 </div>
 
                 <div className="tile-label">
-                    {props.tagged.map((tag: any) => (
-                        <span
+                    {props.tagged.map((tag: any, index) => (
+                        <span key={index}
                             data-value={tag}
                             onClick={props.click}
                             className="label label-warning"

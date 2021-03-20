@@ -8,6 +8,7 @@ import Tile from './Tile/Tile';
 /* ##### TILES COMPONENT  ##### */
 /* ########################## */
 
+
 class Tiles extends React.Component<any, any> {
 
     constructor(props: any) {
@@ -21,6 +22,7 @@ class Tiles extends React.Component<any, any> {
         this.tileFilteredList = this.tileFilteredList.bind(this); // the filterList after the onclick takes places
         this.searchTiles= this.searchTiles.bind(this); // the filterList after the onclick takes places
         this.tagParam = this.tagParam.bind(this);
+        this.searchParam = this.searchParam.bind(this);
     }
     /* ----------------------------
      Wait to load data after runtime.
@@ -31,6 +33,12 @@ class Tiles extends React.Component<any, any> {
     componentDidMount() {
         this.flowData();
         this.tagParam();
+        this.searchParam(
+
+        );
+        // Searching for tile based on text from each tile. 
+
+
     }
 
     flowData = () => {
@@ -87,6 +95,7 @@ class Tiles extends React.Component<any, any> {
             /* ----------------------------
           Adds looped data to state array.
           --------------------------------*/
+            var nullCheck = true;
             items.push({
                 icon: icon.contentValue,
                 tags: tags.contentValue,
@@ -112,13 +121,31 @@ class Tiles extends React.Component<any, any> {
     }
 
     /* ----------------------------
-      function that is used for &f= url parameter. Example:
+      function that is used for &f= or &s= url parameter. Example:
     --------------------------------*/
+    
+    searchParam = () => {
+        const sParams = new URLSearchParams(
+            document.location.search.substring(1),
+        );
+        const sParam = sParams.get('s'); //        &f=Retail will filter retail
+        if (sParam === null) {
+            this.setState({
+                search: '',
+            });
+        } else {
+            this.setState({
+                search: sParam,
+            });
+        }
+    }
+
     tagParam = () => {
         const params = new URLSearchParams(
             document.location.search.substring(1),
         );
         const param = params.get('f'); //        &f=Retail will filter retail
+        console.log(param);
         if (param === null) {
             this.setState({
                 defaultTag: 'All',
@@ -170,23 +197,18 @@ class Tiles extends React.Component<any, any> {
     /* ----------------------------
     SEARCH Filter
     --------------------------------*/
+    searchTile = (arr, str) => {
+        return arr.filter(x => Object.values(x).join(' ').toLowerCase().includes(str.toLowerCase()))
+    }
 
  render() {
      /* ----------------------------
     SEARCH Filter
     --------------------------------*/
-    const tiles = this.state.items;
 
-    // Searching for tile based on text from each tile. 
-    let searchTile = (arr, str) => {
-        return arr.filter(x => Object.values(x)
-         .join(' ')
-         .toLowerCase()
-         .includes(str.toLowerCase())
-         )
-    }
+    const filtered = this.searchTile(this.state.items, this.state.search);
+    
     // console.log(this.props.tileFilteredList());
-    const filtered = searchTile(tiles, this.state.search);
 
 
     return (
@@ -195,7 +217,6 @@ class Tiles extends React.Component<any, any> {
                 <SearchBar
                    inputValue={this.state.search}
                    itemSearchOnChange={this.searchTiles}
-
                 />
                 <TagNav
                     items={this.state.items}
@@ -207,7 +228,6 @@ class Tiles extends React.Component<any, any> {
 
                     <ul className="tile-listing">
                         {filtered.map((value, i) => {
-
                             return <Tile
                                     key={i}
                                     icon={value.icon}
@@ -222,7 +242,6 @@ class Tiles extends React.Component<any, any> {
                                 />;
                         })
                         }
-
                     </ul>
                 </div>
             </div>

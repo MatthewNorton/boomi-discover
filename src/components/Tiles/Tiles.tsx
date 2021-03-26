@@ -18,9 +18,9 @@ class Tiles extends React.Component<any, any> {
             defaultTag: ' ',
             search: '',
         };
-        this.tileFilterAction = this.tileFilterAction.bind(this); // filter ONCLICK action
+        this.tileFilterHandler = this.tileFilterHandler.bind(this); // filter ONCLICK Handler
         this.tileFilteredList = this.tileFilteredList.bind(this); // the filterList after the onclick takes places
-        this.searchTiles= this.searchTiles.bind(this); // the filterList after the onclick takes places
+        this.searchHandler = this.searchHandler.bind(this); // the filterList after the onclick takes places
         this.tagParam = this.tagParam.bind(this);
         this.searchParam = this.searchParam.bind(this);
     }
@@ -33,10 +33,8 @@ class Tiles extends React.Component<any, any> {
     componentDidMount() {
         this.flowData();
         this.tagParam();
-        this.searchParam(
-
-        );
-        // Searching for tile based on text from each tile. 
+        this.searchParam();
+        // Searching for tile based on text from each tile.
 
 
     }
@@ -95,7 +93,7 @@ class Tiles extends React.Component<any, any> {
             /* ----------------------------
           Adds looped data to state array.
           --------------------------------*/
-            var nullCheck = true;
+            // var nullCheck = true;
             items.push({
                 icon: icon.contentValue,
                 tags: tags.contentValue,
@@ -123,7 +121,7 @@ class Tiles extends React.Component<any, any> {
     /* ----------------------------
       function that is used for &f= or &s= url parameter. Example:
     --------------------------------*/
-    
+
     searchParam = () => {
         const sParams = new URLSearchParams(
             document.location.search.substring(1),
@@ -145,7 +143,6 @@ class Tiles extends React.Component<any, any> {
             document.location.search.substring(1),
         );
         const param = params.get('f'); //        &f=Retail will filter retail
-        console.log(param);
         if (param === null) {
             this.setState({
                 defaultTag: 'All',
@@ -158,9 +155,9 @@ class Tiles extends React.Component<any, any> {
     }
 
     /* ----------------------------
-    ACTION: Click state Creating a clickable filter. Clicking a tag will filter the tiles.
+    Handler: Click state Creating a clickable filter. Clicking a tag will filter the tiles.
     --------------------------------*/
-    tileFilterAction = (event) => {
+    tileFilterHandler = (event) => {
         this.setState({
             // If default tag === All clear the tag from search to display every tile. Otherwise filter tiles to the tag clicked.
             search:( (event.target.getAttribute('data-value') === 'All' ? '' : event.target.getAttribute('data-value'))),
@@ -178,17 +175,21 @@ class Tiles extends React.Component<any, any> {
     /* Filter will search through the array based on defaultTag. IE: if data-value === */
 
         const filterItems = items.filter((item) => {
-            // If does NOT = all, then filter based on the data-value.
-            return defaultTag !== 'All' ? item.tags.toLowerCase().split(',').join(',').indexOf(defaultTag.toLowerCase(), -1) > -1 : true;
+            return defaultTag !== 'All' ?
+            item.tags.toLowerCase()
+            .split(',')
+            .join(',')
+            .indexOf(defaultTag.toLowerCase(), -1) > -1 : true;
 
-        });
+        })
+
+
 
     }
-
     /* ----------------------------
     SEARCH Event Handler
     --------------------------------*/
-    searchTiles = (event) => {
+    searchHandler = (event) => {
         this.setState({
             search: event.target.value
         });
@@ -207,7 +208,7 @@ class Tiles extends React.Component<any, any> {
     --------------------------------*/
 
     const filtered = this.searchTile(this.state.items, this.state.search);
-    
+
     // console.log(this.props.tileFilteredList());
 
 
@@ -216,18 +217,18 @@ class Tiles extends React.Component<any, any> {
             <div className="wrapper">
                 <SearchBar
                    inputValue={this.state.search}
-                   itemSearchOnChange={this.searchTiles}
+                   itemSearchOnChange={this.searchHandler}
                 />
                 <TagNav
                     items={this.state.items}
-                    buttonAction={this.tileFilterAction}
+                    buttonAction={this.tileFilterHandler}
                     activeClass=""
 
                 />
                 <div className="tile-wrapper">
 
                     <ul className="tile-listing">
-                        {filtered.map((value, i) => {
+                        {filtered.sort((a, b) => a.order - b.order).map((value, i) => {
                             return <Tile
                                     key={i}
                                     icon={value.icon}
@@ -238,7 +239,7 @@ class Tiles extends React.Component<any, any> {
                                     liveUrl={value.liveUrl}
                                     learnUrl={value.learnUrl}
                                     order={value.order}
-                                    click={this.tileFilterAction}
+                                    click={this.tileFilterHandler}
                                 />;
                         })
                         }

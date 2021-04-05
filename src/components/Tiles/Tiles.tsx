@@ -15,7 +15,7 @@ class Tiles extends React.Component<any, any> {
         super(props);
         this.state = {
             items: [], /* The array flowData is placed in */
-            defaultTag: ' ',
+            tag: ' ',
             search: '',
         };
         this.tileFilterHandler = this.tileFilterHandler.bind(this); // filter ONCLICK Handler
@@ -29,6 +29,10 @@ class Tiles extends React.Component<any, any> {
     --------------------------------*/
 
     /* Loads the Flow data & &f= param functionality after run time */
+    // const [items, setItems] = useState([]); 
+    // const [tag, setTag] = useState(); 
+    // const [search, setSearch] = useState(); 
+
 
     componentDidMount() {
         this.flowData();
@@ -38,6 +42,9 @@ class Tiles extends React.Component<any, any> {
 
 
     }
+    // const [items, setItems] = useState([]); 
+    // const [tag, setTag] = useState(); 
+    // const [search, setSearch] = useState(); 
 
     flowData = () => {
         const modelAll = manywho.model.getComponents(this.props.flowKey);
@@ -145,11 +152,11 @@ class Tiles extends React.Component<any, any> {
         const param = params.get('f'); //        &f=Retail will filter retail
         if (param === null) {
             this.setState({
-                defaultTag: 'All',
+                tag: 'All',
             });
         } else {
             this.setState({
-                defaultTag: param,
+                tag: param,
             });
         }
     }
@@ -161,7 +168,7 @@ class Tiles extends React.Component<any, any> {
         this.setState({
             // If default tag === All clear the tag from search to display every tile. Otherwise filter tiles to the tag clicked.
             search:( (event.target.getAttribute('data-value') === 'All' ? '' : event.target.getAttribute('data-value'))),
-            defaultTag: event.target.getAttribute('data-value')
+            tag: event.target.getAttribute('data-value')
         });
 
     }
@@ -170,16 +177,16 @@ class Tiles extends React.Component<any, any> {
     FILTEREDLIST: Click state Creating a clickable filter. Clicking a tag will filter the tiles.
     --------------------------------*/
     tileFilteredList = () => {
-        const defaultTag = this.state.defaultTag;
+        const tag = this.state.tag;
         const items = this.state.items;
-    /* Filter will search through the array based on defaultTag. IE: if data-value === */
+    /* Filter will search through the array based on tag. IE: if data-value === */
 
         const filterItems = items.filter((item) => {
-            return defaultTag !== 'All' ?
+            return tag !== 'All' ?
             item.tags.toLowerCase()
             .split(',')
             .join(',')
-            .indexOf(defaultTag.toLowerCase(), -1) > -1 : true;
+            .indexOf(tag.toLowerCase(), -1) > -1 : true;
 
         })
 

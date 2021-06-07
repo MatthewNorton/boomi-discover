@@ -10,6 +10,7 @@ resources
 package-lock.json
 
 #IDE
+**/.vscode
 .vscode
 ngrok.exe
 src/components/Tiles/Tiles copy.tsx
